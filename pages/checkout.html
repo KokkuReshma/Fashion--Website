@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Reshma Designs</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .checkout-form { max-width: 500px; margin: 40px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+        .order-summary { background: #f9f9f9; padding: 15px; border-radius: 6px; margin-bottom: 20px; }
+    </style>
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+</div>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">
+        <img src="../assets/branding/logo.svg" alt="Reshma Designs">
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="wishlist.html">❤️ Wishlist</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
+        <li><a href="profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
+        <li><a href="login.html" id="loginLink">Login</a></li>
+        <li><a href="signup.html" id="signupLink">Signup</a></li>
+        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- QUOTE BANNER -->
+<div style="text-align:center; padding:20px; background:#fff5f8;">
+    <p style="font-size:14px; color:#666; margin:0;">Your style, our commitment. Secure checkout for seamless shopping.</p>
+</div>
+
+<!-- CHECKOUT PAGE -->
+<div class="checkout-form" id="checkoutForm">
+    <h2 style="text-align:center; color:#ff3f6c;">🛍️ Checkout</h2>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+        <h3>📦 Order Summary</h3>
+        <div id="orderItems"></div>
+        <hr>
+        <h4>Total: ₹<span id="checkoutTotal">0</span></h4>
+    </div>
+
+    <!-- Delivery Form -->
+    <form id="checkoutFormElement">
+        
+        <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" id="phone" placeholder="Enter phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Delivery Address *</label>
+            <input type="text" id="address" placeholder="Enter full address" required>
+        </div>
+
+        <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="city" placeholder="Enter city" required>
+        </div>
+
+        <div class="form-group">
+            <label>Pincode *</label>
+            <input type="text" id="pincode" placeholder="Enter pincode" required>
+        </div>
+
+        <!-- PAYMENT OPTIONS -->
+        <h3 style="color:#ff3f6c; margin-top:20px;">💳 Payment Method</h3>
+        
+        <div class="payment-options">
+            <div class="payment-option" onclick="selectPayment('upi'); event.stopPropagation();" data-method="upi">
+                📱 UPI
+            </div>
+            <div class="payment-option" onclick="selectPayment('card'); event.stopPropagation();" data-method="card">
+                💳 Card
+            </div>
+            <div class="payment-option" onclick="selectPayment('cod'); event.stopPropagation();" data-method="cod">
+                💰 COD
+            </div>
+        </div>
+
+        <!-- UPI Details -->
+        <div id="upiDetails" style="display:none;">
+            <div class="form-group">
+                <label>UPI ID *</label>
+                <input type="text" id="upiId" placeholder="yourname@upi">
+            </div>
+        </div>
+
+        <!-- Card Details -->
+        <div id="cardDetails" style="display:none;">
+            <div class="form-group">
+                <label>Card Number *</label>
+                <input type="text" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div class="form-group">
+                    <label>Expiry Date *</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                </div>
+                <div class="form-group">
+                    <label>CVV *</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                </div>
+            </div>
+        </div>
+
+        <!-- COD Notice -->
+        <div id="codNotice" style="display:none; background:#fffbea; padding:10px; border-radius:6px; color:#666; font-size:13px;">
+            ✅ Pay when you receive your order
+        </div>
+
+        <button type="button" onclick="validateCheckoutForm(event)" style="width:100%; padding:12px; background:#ff3f6c; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:16px; margin-top:20px;">Place Order</button>
+        <button type="button" onclick="window.history.back()" style="width:100%; padding:12px; background:#999; color:white; margin-top:10px; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Cancel</button>
+    </form>
+</div>
+
+<!-- ORDER SUCCESS PAGE -->
+<div id="orderSuccess" style="display:none; text-align:center; padding:60px 20px;">
+    <div style="max-width:500px; margin:0 auto; background:white; padding:40px; border-radius:12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <h1 style="color:#4CAF50; font-size:60px;">✅</h1>
+        <h2 style="color:#ff3f6c; margin:20px 0;">Order Placed Successfully!</h2>
+        <p style="color:#666; font-size:16px; line-height:1.6;">
+            Thank you for shopping with Reshma Designs!<br>
+            Your order has been confirmed and is being processed.<br>
+            You'll receive updates on your email.
+        </p>
+        <div style="background:#f9f9f9; padding:20px; border-radius:8px; margin:20px 0; text-align:left;">
+            <p><strong>Order Details:</strong></p>
+            <p>📧 Email: <span id="successEmail"></span></p>
+            <p>📦 Items: <span id="successItems"></span></p>
+            <p>💰 Total: ₹<span id="successTotal"></span></p>
+            <p>🚚 Delivery: 3-5 business days</p>
+        </div>
+        <button onclick="window.location.href='order-history.html'" style="padding:12px 30px; background:#ff3f6c; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600; font-size:16px;">View Orders</button>
+        <br><br>
+        <button onclick="window.location.href='../index.html'" style="padding:12px 30px; background:#999; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">Continue Shopping</button>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-column">
+        <h4>Need Help?</h4>
+        <p>📞 2345678902</p>
+        <p>✉️ reshmafashion@gmail.com</p>
+    </div>
+</footer>
+
+<script src="../js/script.js"></script>
+<script>
+// Payment method selection
+function selectPayment(method) {
+    document.querySelectorAll(".payment-option").forEach(opt => opt.classList.remove("active"));
+    event.target.classList.add("active");
+    
+    // Hide all payment details
+    document.getElementById("upiDetails").style.display = "none";
+    document.getElementById("cardDetails").style.display = "none";
+    document.getElementById("codNotice").style.display = "none";
+    
+    // Show selected payment method
+    if(method === "upi") {
+        document.getElementById("upiDetails").style.display = "block";
+    } else if(method === "card") {
+        document.getElementById("cardDetails").style.display = "block";
+    } else if(method === "cod") {
+        document.getElementById("codNotice").style.display = "block";
+    }
+    
+    localStorage.setItem("paymentMethod", method);
+}
+
+// Validate and place order
+function validateCheckoutForm(event) {
+    event.preventDefault();
+    
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const paymentMethod = localStorage.getItem("paymentMethod");
+    const name = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const pincode = document.getElementById("pincode").value;
+    
+    if(!name || !email || !phone || !address || !city || !pincode) {
+        alert("❌ Please fill all fields");
+        return;
+    }
+    
+    if(!paymentMethod) {
+        alert("❌ Please select a payment method");
+        return;
+    }
+    
+    if(cart.length === 0) {
+        alert("❌ Your cart is empty");
+        return;
+    }
+    
+    // Validate payment details
+    if(paymentMethod === "upi" && !document.getElementById("upiId").value) {
+        alert("❌ Please enter UPI ID");
+        return;
+    }
+    
+    if(paymentMethod === "card") {
+        const cardNum = document.getElementById("cardNumber").value.replace(/\s/g, "");
+        const expiry = document.getElementById("expiryDate").value;
+        const cvv = document.getElementById("cvv").value;
+        
+        if(!cardNum || cardNum.length < 13) {
+            alert("❌ Please enter valid card number");
+            return;
+        }
+        if(!expiry || !cvv) {
+            alert("❌ Please enter card details");
+            return;
+        }
+    }
+    
+    // Save order with additional info
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const orderId = 1000 + orders.length;
+    
+    const newOrder = {
+        orderId: orderId,
+        name: name,
+        email: email,
+        address: address + ", " + city,
+        phone: phone,
+        pincode: pincode,
+        cart: cart,
+        paymentMethod: paymentMethod,
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+        status: "Confirmed",
+        amount: cart.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0)
+    };
+    
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    localStorage.removeItem("cart");
+    
+    // Send notifications
+    // Customer notification
+    let customerNotifications = JSON.parse(localStorage.getItem("customerNotifications")) || [];
+    customerNotifications.push({
+        type: "ORDER_CONFIRMED",
+        orderId: orderId,
+        message: `Your order #${orderId} has been confirmed! Total: ₹${newOrder.amount}`,
+        timestamp: new Date().toLocaleString(),
+        read: false
+    });
+    localStorage.setItem("customerNotifications", JSON.stringify(customerNotifications));
+    
+    // Admin notification
+    let adminNotifications = JSON.parse(localStorage.getItem("adminNotifications")) || [];
+    adminNotifications.push({
+        type: "NEW_ORDER",
+        orderId: orderId,
+        customerName: name,
+        customerEmail: email,
+        amount: newOrder.amount,
+        itemsCount: cart.length,
+        timestamp: new Date().toLocaleString(),
+        read: false
+    });
+    localStorage.setItem("adminNotifications", JSON.stringify(adminNotifications));
+    
+    // Show success page
+    document.getElementById("checkoutForm").style.display = "none";
+    document.getElementById("orderSuccess").style.display = "block";
+    
+    document.getElementById("successEmail").innerText = email;
+    document.getElementById("successItems").innerText = cart.length;
+    document.getElementById("successTotal").innerText = newOrder.amount;
+    
+    // Show notification
+    showNotification(`✅ Order #${orderId} Confirmed! Check your email for details.`);
+    
+    updateCartCount();
+    
+    setTimeout(() => {
+        window.location.href = "order-history.html";
+    }, 3000);
+}
+
+// Display cart summary
+function displayOrderSummary() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let total = 0;
+    let itemsHTML = "";
+    
+    if(cart.length === 0) {
+        itemsHTML = "<p>No items in cart</p>";
+    } else {
+        cart.forEach((item, index) => {
+            itemsHTML += `<p>✓ ${item.name} - ₹${item.price}</p>`;
+            total +=item.price;
+        });
+    }
+    
+    document.getElementById("orderItems").innerHTML = itemsHTML;
+    document.getElementById("checkoutTotal").innerText = total;
+}
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", function() {
+    showLoading();
+    displayOrderSummary();
+    updateCartCount();
+    updateNavbarUser();
+});
+
+window.addEventListener("load", function() {
+    hideLoading();
+    updateWishlistUI();
+});
+</script>
+
+</body>
+</html>

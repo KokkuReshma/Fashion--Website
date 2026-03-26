@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection - Reshma Designs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+</div>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">
+        <img src="../assets/branding/logo.svg" alt="Reshma Designs logo">
+    </div>
+
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <ul id="navMenu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a class="active" href="collection.html">Collection</a></li>
+        <li><a href="wishlist.html">❤️ Wishlist</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
+        <li><a href="profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
+        <li><a href="login.html" id="loginLink">Login</a></li>
+        <li><a href="signup.html" id="signupLink">Signup</a></li>
+        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
+        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
+    </ul>
+
+    <!-- Search -->
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchProducts()">
+</nav>
+
+<!-- Header -->
+ <header>
+
+    <!-- SCROLL TEXT -->
+    <div class="scroll-text">
+        <div class="scroll-track">
+            <span class="multi-color">✨ Reshma Designers ✨</span>
+            <span class="multi-color">✨ Reshma Designers ✨</span>
+            <span class="multi-color">✨ Reshma Designers ✨</span>
+            <span class="multi-color">✨ Reshma Designers ✨</span>
+        </div>
+    </div>
+
+    <p class="premium-tagline">Wear your confidence. Own your style.</p>
+
+</header>
+
+<!-- Products -->
+<section class="gallery">
+    <!-- SORT OPTIONS -->
+    <div class="sort-container" style="grid-column: 1/-1;">
+        <label>Sort by:</label>
+        <select onchange="sortProducts(this.value)">
+            <option value="">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name">Name: A to Z</option>
+        </select>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-bar" style="grid-column:1/-1;">
+        <button onclick="filterProducts('all')">All</button>
+        <button onclick="filterProducts('party')">Party</button>
+        <button onclick="filterProducts('wedding')">Wedding</button>
+        <button onclick="filterProducts('formal')">Formal</button>
+        <button onclick="filterProducts('kids')">Kids</button>
+        <button onclick="filterProducts('jewelry')">Jewelry</button>
+    </div>
+
+    <!-- PARTY WEAR SECTION -->
+
+    <div class="card" data-category="party" onclick="viewProduct('Designer Saree 1', 9999, '../assets/products/Disigner saree 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Designer Saree 1" onclick="toggleWishlist('Designer Saree 1', 9999, '../assets/products/Disigner saree  1.jfif', event)">🤍</button>
+            <img src="../assets/products/Disigner saree  1.jpg" alt="Designer Saree 1">
+        <p class="brand">Reshma</p>
+        <h3>Designer Saree 1</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
+        <p class="price">₹9999</p>
+        <button onclick="addToCart('Designer Saree 1', 9999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="party" onclick="viewProduct('Designer Saree 2', 8999, '../assets/products/Disigner saree 2.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Designer Saree 2" onclick="toggleWishlist('Designer Saree 2', 8999, '../assets/products/Disigner saree 2.jfif', event)">🤍</button>
+            <img src="../assets/products/Disigner saree 2.jpg" alt="Designer Saree 2">
+        <p class="brand">Reshma</p>
+        <h3>Designer Saree 2</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
+        <p class="price">₹8999</p>
+        <button onclick="addToCart('Designer Saree 2', 8999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="party" onclick="viewProduct('Designer Saree 3', 7999, '../assets/products/Disigner saree  3.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Designer Saree 3" onclick="toggleWishlist('Designer Saree 3', 7999, '../assets/products/Disigner saree  3.jfif', event)">🤍</button>
+            <img src="../assets/products/Disigner saree  3.jpg" alt="Designer Saree 3">
+        <p class="brand">Reshma</p>
+        <h3>Designer Saree 3</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.8)</p>
+        <p class="price">₹7999</p>
+        <button onclick="addToCart('Designer Saree 3', 7999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+
+    <div class="card" data-category="party" onclick="viewProduct('Lehenga 3', 5499, '../assets/products/lehanga 8.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Lehenga 3" onclick="toggleWishlist('Lehenga 3', 5499, '../assets/products/lehanga 8.jfif', event)">🤍</button>
+            <img src="../assets/products/lehanga 8.jpg" alt="Lehenga 3">
+        <p class="brand">Reshma</p>
+        <h3>Lehenga 3</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.1)</p>
+        <p class="price">₹5499</p>
+        <button onclick="addToCart('Lehenga 3', 5499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="party" onclick="viewProduct('Party Wear', 2999, '../assets/products/Party wear 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Party Wear" onclick="toggleWishlist('Party Wear', 2999, '../assets/products/Party wear 1.jfif', event)">🤍</button>
+            <img src="../assets/products/Party wear 1.jpg" alt="Party Wear">
+        <p class="brand">Reshma</p>
+        <h3>Party Wear</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.0)</p>
+        <p class="price">₹2999</p>
+        <button onclick="addToCart('Party Wear', 2999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="party" onclick="viewProduct('Party Collection', 3499, '../assets/products/party wear.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Party Collection" onclick="toggleWishlist('Party Collection', 3499, '../assets/products/party wear.jfif', event)">🤍</button>
+            <img src="../assets/products/party wear.jpg" alt="Party Collection">
+        <p class="brand">Reshma</p>
+        <h3>Party Collection</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.6)</p>
+        <p class="price">₹3499</p>
+        <button onclick="addToCart('Party Collection', 3499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- WEDDING SECTION -->
+    <div class="card" data-category="wedding" onclick="viewProduct('Wedding Dress 1', 15999, '../assets/products/Wedding Dress 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Wedding Dress 1" onclick="toggleWishlist('Wedding Dress 1', 15999, '../assets/products/Wedding Dress 1.jfif', event)">🤍</button>
+            <img src="../assets/products/Wedding Dress 1.jpg" alt="Wedding Dress 1">
+        <p class="brand">Reshma</p>
+        <h3>Wedding Dress 1</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+        <p class="price">₹15999</p>
+        <button onclick="addToCart('Wedding Dress 1', 15999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="wedding" onclick="viewProduct('Wedding Dress 2', 16999, '../assets/products/Wedding Dress 2.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Wedding Dress 2" onclick="toggleWishlist('Wedding Dress 2', 16999, '../assets/products/Wedding Dress 2.jfif', event)">🤍</button>
+        <img src="../assets/products/Wedding Dress 2.jfif" alt="Wedding Dress 2">
+        <p class="brand">Reshma</p>
+        <h3>Wedding Dress 2</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+        <p class="price">₹16999</p>
+        <button onclick="addToCart('Wedding Dress 2', 16999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="wedding" onclick="viewProduct('Wedding Dress 3', 17999, '../assets/products/wedding Dress 5.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Wedding Dress 3" onclick="toggleWishlist('Wedding Dress 3', 17999, '../assets/products/wedding Dress 5.jfif', event)">🤍</button>
+        <img src="../assets/products/wedding Dress 5.jfif" alt="Wedding Dress 3">
+        <p class="brand">Reshma</p>
+        <h3>Wedding Dress 3</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
+        <p class="price">₹17999</p>
+        <button onclick="addToCart('Wedding Dress 3', 17999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="wedding" onclick="viewProduct('Indian Wedding Dress', 18999, '../assets/products/Indian Wedding Dress 3.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Indian Wedding Dress" onclick="toggleWishlist('Indian Wedding Dress', 18999, '../assets/products/Indian Wedding Dress 3.jfif', event)">🤍</button>
+        <img src="../assets/products/Indian Wedding Dress 3.jfif" alt="Indian Wedding Dress">
+        <p class="brand">Reshma</p>
+        <h3>Indian Wedding Dress</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (5.0)</p>
+        <p class="price">₹18999</p>
+        <button onclick="addToCart('Indian Wedding Dress', 18999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="wedding" onclick="viewProduct('Indian Wedding Dress 2', 19999, '../assets/products/Indian Weding Dress 4.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Indian Wedding Dress 2" onclick="toggleWishlist('Indian Wedding Dress 2', 19999, '../assets/products/Indian Weding Dress 4.jfif', event)">🤍</button>
+        <img src="../assets/products/Indian Weding Dress 4.jfif" alt="Indian Wedding Dress 2">
+        <p class="brand">Reshma</p>
+        <h3>Indian Wedding Dress 2</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.8)</p>
+        <p class="price">₹19999</p>
+        <button onclick="addToCart('Indian Wedding Dress 2', 19999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- FORMAL SECTION -->
+    <div class="card" data-category="formal" onclick="viewProduct('Formal Wear', 3999, '../assets/products/Formal.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Formal Wear" onclick="toggleWishlist('Formal Wear', 3999, '../assets/products/Formal.jfif', event)">🤍</button>
+        <img src="../assets/products/Formal.jfif" alt="Formal Wear">
+        <p class="brand">Reshma</p>
+        <h3>Formal Wear</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
+        <p class="price">₹3999</p>
+        <button onclick="addToCart('Formal Wear', 3999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="formal" onclick="viewProduct('Formal Lehenga', 6999, '../assets/products/lehanga 9.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Formal Lehenga" onclick="toggleWishlist('Formal Lehenga', 6999, '../assets/products/lehanga 9.jfif', event)">🤍</button>
+        <img src="../assets/products/lehanga 9.jfif" alt="Formal Lehenga">
+        <p class="brand">Reshma</p>
+        <h3>Formal Lehenga</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
+        <p class="price">₹6999</p>
+        <button onclick="addToCart('Formal Lehenga', 6999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="formal" onclick="viewProduct('Formal Lehenga 2', 7499, '../assets/products/lehanga 10.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Formal Lehenga 2" onclick="toggleWishlist('Formal Lehenga 2', 7499, '../assets/products/lehanga 10.jfif', event)">🤍</button>
+        <img src="../assets/products/lehanga 10.jfif" alt="Formal Lehenga 2">
+        <p class="brand">Reshma</p>
+        <h3>Formal Lehenga 2</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
+        <p class="price">₹7499</p>
+        <button onclick="addToCart('Formal Lehenga 2', 7499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="formal" onclick="viewProduct('Formal Lehenga 3', 7999, '../assets/products/lehanga 11.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Formal Lehenga 3" onclick="toggleWishlist('Formal Lehenga 3', 7999, '../assets/products/lehanga 11.jfif', event)">🤍</button>
+        <img src="../assets/products/lehanga 11.jfif" alt="Formal Lehenga 3">
+        <p class="brand">Reshma</p>
+        <h3>Formal Lehenga 3</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+        <p class="price">₹7999</p>
+        <button onclick="addToCart('Formal Lehenga 3', 7999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- KIDS SECTION -->
+    <div class="card" data-category="kids" onclick="viewProduct('Kids Wear', 1999, '../assets/products/Kids wear.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Kids Wear" onclick="toggleWishlist('Kids Wear', 1999, '../assets/products/Kids wear.jfif', event)">🤍</button>
+        <img src="../assets/products/Kids wear.jfif" alt="Kids Wear">
+        <p class="brand">Reshma</p>
+        <h3>Kids Wear</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.3)</p>
+        <p class="price">₹1999</p>
+        <button onclick="addToCart('Kids Wear', 1999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="kids" onclick="viewProduct('Kids Wear 2', 2199, '../assets/products/kids wear 2.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Kids Wear 2" onclick="toggleWishlist('Kids Wear 2', 2199, '../assets/products/kids wear 2.jfif', event)">🤍</button>
+        <img src="../assets/products/kids wear 2.jfif" alt="Kids Wear 2">
+        <p class="brand">Reshma</p>
+        <h3>Kids Wear 2</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.6)</p>
+        <p class="price">₹2199</p>
+        <button onclick="addToCart('Kids Wear 2', 2199); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- JEWELRY SECTION -->
+    <div class="card" data-category="jewelry" onclick="viewProduct('Gold Bracelet', 2499, '../assets/products/Bacelet 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Gold Bracelet" onclick="toggleWishlist('Gold Bracelet', 2499, '../assets/products/Bacelet 1.jfif', event)">🤍</button>
+        <img src="../assets/products/Bacelet 1.jfif" alt="Gold Bracelet">
+        <p class="brand">Reshma</p>
+        <h3>Gold Bracelet</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
+        <p class="price">₹2499</p>
+        <button onclick="addToCart('Gold Bracelet', 2499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Diamond Bracelet', 3999, '../assets/products/Bacelet single stone.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Diamond Bracelet" onclick="toggleWishlist('Diamond Bracelet', 3999, '../assets/products/Bacelet single stone.jfif', event)">🤍</button>
+        <img src="../assets/products/Bacelet single stone.jfif" alt="Diamond Bracelet">
+        <p class="brand">Reshma</p>
+        <h3>Diamond Bracelet</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
+        <p class="price">₹3999</p>
+        <button onclick="addToCart('Diamond Bracelet', 3999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Silver Bracelet', 1799, '../assets/products/Bacelet single.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Silver Bracelet" onclick="toggleWishlist('Silver Bracelet', 1799, '../assets/products/Bacelet single.jfif', event)">🤍</button>
+        <img src="../assets/products/Bacelet single.jfif" alt="Silver Bracelet">
+        <p class="brand">Reshma</p>
+        <h3>Silver Bracelet</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
+        <p class="price">₹1799</p>
+        <button onclick="addToCart('Silver Bracelet', 1799); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Pearl Bracelet', 2199, '../assets/products/Bacelet.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Pearl Bracelet" onclick="toggleWishlist('Pearl Bracelet', 2199, '../assets/products/Bacelet.jfif', event)">🤍</button>
+        <img src="../assets/products/Bacelet.jfif" alt="Pearl Bracelet">
+        <p class="brand">Reshma</p>
+        <h3>Pearl Bracelet</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.6)</p>
+        <p class="price">₹2199</p>
+        <button onclick="addToCart('Pearl Bracelet', 2199); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Bangle Set', 1599, '../assets/products/Bacelets.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Bangle Set" onclick="toggleWishlist('Bangle Set', 1599, '../assets/products/Bacelets.jfif', event)">🤍</button>
+        <img src="../assets/products/Bacelets.jfif" alt="Bangle Set">
+        <p class="brand">Reshma</p>
+        <h3>Bangle Set</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.1)</p>
+        <p class="price">₹1599</p>
+        <button onclick="addToCart('Bangle Set', 1599); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Gold Chain', 2799, '../assets/products/Chains.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Gold Chain" onclick="toggleWishlist('Gold Chain', 2799, '../assets/products/Chains.jfif', event)">🤍</button>
+        <img src="../assets/products/Chains.jfif" alt="Gold Chain">
+        <p class="brand">Reshma</p>
+        <h3>Gold Chain</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+        <p class="price">₹2799</p>
+        <button onclick="addToCart('Gold Chain', 2799); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Diamond Set', 4999, '../assets/products/Diomand Bacelet.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Diamond Set" onclick="toggleWishlist('Diamond Set', 4999, '../assets/products/Diomand Bacelet.jfif', event)">🤍</button>
+        <img src="../assets/products/Diomand Bacelet.jfif" alt="Diamond Set">
+        <p class="brand">Reshma</p>
+        <h3>Diamond Set</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.8)</p>
+        <p class="price">₹4999</p>
+        <button onclick="addToCart('Diamond Set', 4999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Pearl Earrings', 1499, '../assets/products/Earrings 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Pearl Earrings" onclick="toggleWishlist('Pearl Earrings', 1499, '../assets/products/Earrings 1.jfif', event)">🤍</button>
+        <img src="../assets/products/Earrings 1.jfif" alt="Pearl Earrings">
+        <p class="brand">Reshma</p>
+        <h3>Pearl Earrings</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.3)</p>
+        <p class="price">₹1499</p>
+        <button onclick="addToCart('Pearl Earrings', 1499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Diamond Earrings', 2499, '../assets/products/Earrings.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Diamond Earrings" onclick="toggleWishlist('Diamond Earrings', 2499, '../assets/products/Earrings.jfif', event)">🤍</button>
+        <img src="../assets/products/Earrings.jfif" alt="Diamond Earrings">
+        <p class="brand">Reshma</p>
+        <h3>Diamond Earrings</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
+        <p class="price">₹2499</p>
+        <button onclick="addToCart('Diamond Earrings', 2499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Jewelry Set 1', 3999, '../assets/products/Jewellary set 3.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Jewelry Set 1" onclick="toggleWishlist('Jewelry Set 1', 3999, '../assets/products/Jewellary set 3.jfif', event)">🤍</button>
+        <img src="../assets/products/Jewellary set 3.jfif" alt="Jewelry Set 1">
+        <p class="brand">Reshma</p>
+        <h3>Jewelry Set 1</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
+        <p class="price">₹3999</p>
+        <button onclick="addToCart('Jewelry Set 1', 3999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Jewelry Set 2', 4299, '../assets/products/Jewellery set 1.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Jewelry Set 2" onclick="toggleWishlist('Jewelry Set 2', 4299, '../assets/products/Jewellery set 1.jfif', event)">🤍</button>
+        <img src="../assets/products/Jewellery set 1.jfif" alt="Jewelry Set 2">
+        <p class="brand">Reshma</p>
+        <h3>Jewelry Set 2</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+        <p class="price">₹4299</p>
+        <button onclick="addToCart('Jewelry Set 2', 4299); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Jewelry Set 3', 4599, '../assets/products/Jewellery set 2.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Jewelry Set 3" onclick="toggleWishlist('Jewelry Set 3', 4599, '../assets/products/Jewellery set 2.jfif', event)">🤍</button>
+        <img src="../assets/products/Jewellery set 2.jfif" alt="Jewelry Set 3">
+        <p class="brand">Reshma</p>
+        <h3>Jewelry Set 3</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
+        <p class="price">₹4599</p>
+        <button onclick="addToCart('Jewelry Set 3', 4599); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Complete Jewelry Set', 5999, '../assets/products/Jewellery set.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Complete Jewelry Set" onclick="toggleWishlist('Complete Jewelry Set', 5999, '../assets/products/Jewellery set.jfif', event)">🤍</button>
+        <img src="../assets/products/Jewellery set.jfif" alt="Complete Jewelry Set">
+        <p class="brand">Reshma</p>
+        <h3>Complete Jewelry Set</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.9)</p>
+        <p class="price">₹5999</p>
+        <button onclick="addToCart('Complete Jewelry Set', 5999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="jewelry" onclick="viewProduct('Silver Ring', 999, '../assets/products/Ring.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Silver Ring" onclick="toggleWishlist('Silver Ring', 999, '../assets/products/Ring.jfif', event)">🤍</button>
+        <img src="../assets/products/Ring.jfif" alt="Silver Ring">
+        <p class="brand">Reshma</p>
+        <h3>Silver Ring</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.1)</p>
+        <p class="price">₹999</p>
+        <button onclick="addToCart('Silver Ring', 999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- WESTERN WEAR SECTION (NEW) -->
+    <div class="card" data-category="party" onclick="viewProduct('Western Wear', 4999, '../assets/products/western wear.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Western Wear" onclick="toggleWishlist('Western Wear', 4999, '../assets/products/western wear.jfif', event)">🤍</button>
+        <img src="../assets/products/western wear.jfif" alt="Western Wear">
+        <p class="brand">Reshma</p>
+        <h3>Western Wear</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.4)</p>
+        <p class="price">₹4999</p>
+        <button onclick="addToCart('Western Wear', 4999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- GOLD NECKLACE (NEW) -->
+    <div class="card" data-category="jewelry" onclick="viewProduct('Gold Necklace', 3999, '../assets/products/gold necklace.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Gold Necklace" onclick="toggleWishlist('Gold Necklace', 3999, '../assets/products/gold necklace.jfif', event)">🤍</button>
+        <img src="../assets/products/gold necklace.jfif" alt="Gold Necklace">
+        <p class="brand">Reshma</p>
+        <h3>Gold Necklace</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
+        <p class="price">₹3999</p>
+        <button onclick="addToCart('Gold Necklace', 3999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- ADDITIONAL KIDS WEAR (NEW) -->
+    <div class="card" data-category="kids" onclick="viewProduct('Kids Wear 3', 2499, '../assets/products/kids wear 3.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Kids Wear 3" onclick="toggleWishlist('Kids Wear 3', 2499, '../assets/products/kids wear 3.jfif', event)">🤍</button>
+        <img src="../assets/products/kids wear 3.jfif" alt="Kids Wear 3">
+        <p class="brand">Reshma</p>
+        <h3>Kids Wear 3</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
+        <p class="price">₹2499</p>
+        <button onclick="addToCart('Kids Wear 3', 2499); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="kids" onclick="viewProduct('Kids Wear 4', 2599, '../assets/products/kids wear 4.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Kids Wear 4" onclick="toggleWishlist('Kids Wear 4', 2599, '../assets/products/kids wear 4.jfif', event)">🤍</button>
+        <img src="../assets/products/kids wear 4.jfif" alt="Kids Wear 4">
+        <p class="brand">Reshma</p>
+        <h3>Kids Wear 4</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.3)</p>
+        <p class="price">₹2599</p>
+        <button onclick="addToCart('Kids Wear 4', 2599); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <div class="card" data-category="kids" onclick="viewProduct('Kids Wear 5', 2699, '../assets/products/kids wear 5.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Kids Wear 5" onclick="toggleWishlist('Kids Wear 5', 2699, '../assets/products/kids wear 5.jfif', event)">🤍</button>
+        <img src="../assets/products/kids wear 5.jfif" alt="Kids Wear 5">
+        <p class="brand">Reshma</p>
+        <h3>Kids Wear 5</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.6)</p>
+        <p class="price">₹2699</p>
+        <button onclick="addToCart('Kids Wear 5', 2699); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- GOLD BRACELET (NEW) -->
+    <div class="card" data-category="jewelry" onclick="viewProduct('Gold Bracelet Premium', 4999, '../assets/products/gold bacelet.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Gold Bracelet Premium" onclick="toggleWishlist('Gold Bracelet Premium', 4999, '../assets/products/gold bacelet.jfif', event)">🤍</button>
+        <img src="../assets/products/gold bacelet.jfif" alt="Gold Bracelet Premium">
+        <p class="brand">Reshma</p>
+        <h3>Gold Bracelet Premium</h3>
+        <p class="rating">⭐⭐⭐⭐☆ (4.7)</p>
+        <p class="price">₹4999</p>
+        <button onclick="addToCart('Gold Bracelet Premium', 4999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+    <!-- WEDDING DRESS VARIANT (NEW) -->
+    <div class="card" data-category="wedding" onclick="viewProduct('Wedding Dress 4', 18999, '../assets/products/Wedding dress.jfif')" style="cursor:pointer;">
+        <button class="wishlist-btn" data-product="Wedding Dress 4" onclick="toggleWishlist('Wedding Dress 4', 18999, '../assets/products/Wedding dress.jfif', event)">🤍</button>
+        <img src="../assets/products/Wedding dress.jfif" alt="Wedding Dress 4">
+        <p class="brand">Reshma</p>
+        <h3>Wedding Dress 4</h3>
+        <p class="rating">⭐⭐⭐⭐⭐ (4.8)</p>
+        <p class="price">₹18999</p>
+        <button onclick="addToCart('Wedding Dress 4', 18999); event.stopPropagation();">Add to Bag</button>
+    </div>
+
+</section>
+
+<!-- Cart -->
+<div id="cartBox" class="cart-box">
+    <h3>Your Cart</h3>
+    <ul id="cartItems"></ul>
+    <p>Total: ₹<span id="cartTotal">0</span></p>
+    <button onclick="window.location.href='checkout.html'">Checkout</button>
+    <br><br>
+    <button onclick="closeCart()">Close</button>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-column">
+        <h4>Contact</h4>
+        <p>📞 2345678902</p>
+        <p>✉️ reshmafashion@gmail.com</p>
+    </div>
+    <div class="footer-column">
+        <h4>Support</h4>
+        <p>Help & Support</p>
+        <p>Returns & Refunds</p>
+    </div>
+</footer>
+
+<script src="../js/script.js"></script>
+<script>
+// Initialize page
+window.addEventListener("load", function() {
+    hideLoading();
+    updateCartCount();
+    updateWishlistUI();
+    updateNavbarUser();
+});
+
+// Show loading on page start
+document.addEventListener("DOMContentLoaded", function() {
+    showLoading();
+    updateCartCount();
+    updateNavbarUser();
+});
+</script>
+
+</body>
+</html>

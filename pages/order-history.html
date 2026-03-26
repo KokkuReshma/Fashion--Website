@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Reshma Designs</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+</div>
+
+<!-- Navbar -->
+<nav>
+    <div class="logo">
+        <img src="../assets/branding/logo.svg" alt="Reshma Designs">
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <ul id="navMenu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="wishlist.html">❤️ Wishlist</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
+        <li><a href="profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
+        <li><a href="login.html" id="loginLink">Login</a></li>
+        <li><a href="signup.html" id="signupLink">Signup</a></li>
+        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
+        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header>
+    <h1>📦 Order History</h1>
+    <p>Track your purchases</p>
+</header>
+
+<!-- Orders Container -->
+<div style="max-width:800px; margin:30px auto; padding:20px;">
+    <div id="orderList">
+        <!-- Orders will be loaded here -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-column">
+        <h4>Contact</h4>
+        <p>📞 2345678902</p>
+        <p>✉️ reshmafashion@gmail.com</p>
+    </div>
+    <div class="footer-column">
+        <h4>Support</h4>
+        <p>Help & Support</p>
+        <p>Returns & Refunds</p>
+    </div>
+</footer>
+
+<script src="../js/script.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    showLoading();
+    displayOrderHistory();
+    updateCartCount();
+    updateNavbarUser();
+});
+
+window.addEventListener("load", function() {
+    hideLoading();
+    updateWishlistUI();
+});
+</script>
+
+</body>
+</html>
