@@ -162,10 +162,52 @@ function searchProducts() {
 
 // View product details
 function viewProduct(productName, price, imageUrl) {
+    // Standardize image URL if it matches old patterns
+    let standardizedImageUrl = imageUrl;
+    if (imageUrl) {
+        // Map old image names to new standardized names
+        const imageMap = {
+            // sarees
+            'assets/products/Disigner saree 1.jfif': 'assets/products/designer-saree1.jpg',
+            'assets/products/Disigner saree  1.jfif': 'assets/products/designer-saree1.jpg',
+            'assets/products/Disigner saree 2.jfif': 'assets/products/designer-saree2.jpg',
+            'assets/products/Disigner saree 3.jfif': 'assets/products/designer-saree3.jpg',
+            'assets/products/Disigner saree  3.jfif': 'assets/products/designer-saree3.jpg',
+            // lehenga
+            'assets/products/lehanga 6.jfif': 'assets/products/lehenga6.jpg',
+            'assets/products/lehanga  6.jfif': 'assets/products/lehenga6.jpg',
+            'assets/products/lehanga 8.jfif': 'assets/products/lehenga8.jpg',
+            // partywear
+            'assets/products/Party wear 1.jfif': 'assets/products/partywear1.jpg',
+            'assets/products/party wear.jfif': 'assets/products/partywear2.jpg',
+            // wedding dress
+            'assets/products/Wedding Dress 1.jfif': 'assets/products/wedding-dress1.jpg',
+            'assets/products/Wedding Dress 2.jfif': 'assets/products/wedding-dress2.jpg',
+            'assets/products/wedding Dress 5.jfif': 'assets/products/wedding-dress3.jpg',
+            'assets/products/Indian Wedding Dress 3.jfif': 'assets/products/indian-wedding-dress1.jpg',
+            'assets/products/Indian Weding Dress 4.jfif': 'assets/products/indian-wedding-dress2.jpg',
+            'assets/products/Wedding dress.jfif': 'assets/products/wedding-dress4.jpg',
+            // formal
+            'assets/products/Formal.jfif': 'assets/products/formal.jpg',
+            // kids
+            'assets/products/Kids wear.jfif': 'assets/products/kids-wear1.jpg',
+            'assets/products/kids wear 2.jfif': 'assets/products/kids-wear2.jpg',
+            'assets/products/kids wear 3.jfif': 'assets/products/kids-wear3.jpg',
+            'assets/products/kids wear 4.jfif': 'assets/products/kids-wear4.jpg',
+            'assets/products/kids wear 5.jfif': 'assets/products/kids-wear5.jpg',
+            // jewelry
+            'assets/products/Bacelet 1.jfif': 'assets/products/gold-bracelet1.jpg',
+            'assets/products/Earrings 1.jfif': 'assets/products/pearl-earrings1.jpg',
+            // add more as needed
+        };
+        if (imageMap[imageUrl]) {
+            standardizedImageUrl = imageMap[imageUrl];
+        }
+    }
     localStorage.setItem("selectedProduct", JSON.stringify({
         name: productName,
         price: price,
-        image: imageUrl
+        image: standardizedImageUrl
     }));
     
     const isInPages = window.location.pathname.includes("/pages/");
