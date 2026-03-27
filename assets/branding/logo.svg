@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 120" width="300" height="120">
+  <defs>
+    <linearGradient id="gradMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff3f6c;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#ff6f91;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4269f;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#8b2d7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff3f6c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="300" height="120" rx="24" fill="url(#gradMain)"/>
+  <text x="50%" y="50%" text-anchor="middle" fill="#fff" font-size="36" font-family="Arial, Helvetica, sans-serif" dy=".3em" font-weight="bold" letter-spacing="2">Reshma Designs</text>
+</svg>

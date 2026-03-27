@@ -1,124 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist - Reshma Designs</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<title>Wishlist</title>
+<link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-    🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
-</div>
-
-<!-- Navbar -->
 <nav>
-    <div class="logo">
-        <img src="../assets/branding/logo.svg" alt="Reshma Designs">
-    </div>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
-    <ul id="navMenu">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="collection.html">Collection</a></li>
-        <li><a class="active" href="wishlist.html">❤️ Wishlist</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
-        <li><a href="profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
-        <li><a href="login.html" id="loginLink">Login</a></li>
-        <li><a href="signup.html" id="signupLink">Signup</a></li>
-        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
-        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
-    </ul>
+<h2>❤️ Wishlist</h2>
+<a href="collection.html">Back to Shop</a>
 </nav>
 
-<!-- Header -->
-<header>
-    <h1>❤️ My Wishlist</h1>
-    <p>Save your favorite styles for later</p>
-</header>
+<section class="gallery" id="wishlistItems"></section>
 
-<!-- Wishlist Items -->
-<section class="gallery" id="wishlistItems" style="min-height: 400px;">
-    <!-- Items will be loaded here -->
-</section>
-
-<!-- Cart -->
-<div id="cartBox" class="cart-box">
-    <h3>Your Cart</h3>
-    <ul id="cartItems"></ul>
-    <p>Total: ₹<span id="cartTotal">0</span></p>
-    <button onclick="window.location.href='checkout.html'">Checkout</button>
-    <br><br>
-    <button onclick="closeCart()">Close</button>
-</div>
-
-<!-- Footer -->
-<footer class="site-footer">
-    <div class="footer-column">
-        <h4>Contact</h4>
-        <p>📞 2345678902</p>
-        <p>✉️ reshmafashion@gmail.com</p>
-    </div>
-    <div class="footer-column">
-        <h4>Support</h4>
-        <p>Help & Support</p>
-        <p>Returns & Refunds</p>
-    </div>
-</footer>
-
-<script src="../js/script.js"></script>
 <script>
 function displayWishlist() {
-    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const wishlistItems = document.getElementById("wishlistItems");
-    
-    if(wishlist.length === 0) {
-        wishlistItems.innerHTML = `
-            <div style="text-align:center; padding:60px 20px; grid-column:1/-1;">
-                <h2>Your wishlist is empty</h2>
-                <p style="color:#999; margin:15px 0;">❤️ Start adding items to your wishlist</p>
-                <button onclick="window.location.href='collection.html'" style="padding:15px 30px; background:#ff3f6c; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px; font-weight:600;">Continue Shopping</button>
-            </div>
-        `;
-        return;
-    }
-    
-    wishlistItems.innerHTML = wishlist.map((item, idx) => `
-        <div class="card" style="cursor:pointer; position: relative;">
-            <button class="wishlist-btn" style="color: #4CAF50; background: #c8e6c9;" onclick="removeFromWishlist('${item.name}'); event.stopPropagation();">❤️</button>
-            <img src="${item.image}" alt="${item.name}" style="width:100%; height:200px; object-fit:cover; cursor:pointer; border-radius: 8px;" onclick="viewProduct('${item.name}', ${item.price}, '${item.image}')">
-            <p class="brand" style="margin-top:10px;">Reshma</p>
-            <h3>${item.name}</h3>
-            <p class="rating" style="color: #ffc107;">⭐⭐⭐⭐☆ (4.${Math.floor(Math.random() * 10)})</p>
-            <p class="price">₹${item.price}</p>
-            <button onclick="addToCart('${item.name}', ${item.price}, '${item.image}'); event.stopPropagation();" style="background: linear-gradient(135deg, #ff3f6c, #ff6f91); margin-bottom: 8px;">Add to Bag</button>
-            <button onclick="removeFromWishlist('${item.name}'); event.stopPropagation();" style="background:#d9534f; margin-top:0px; width:90%;">Remove from Wishlist</button>
-        </div>
-    `).join("");
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let container = document.getElementById("wishlistItems");
+
+if(wishlist.length === 0){
+container.innerHTML = "<h2>No items in wishlist</h2>";
+return;
 }
 
-function removeFromWishlist(productName) {
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    wishlist = wishlist.filter(item => item.name !== productName);
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    displayWishlist();
-    showNotification("Removed from wishlist");
+container.innerHTML = "";
+
+wishlist.forEach((item,index) => {
+let div = document.createElement("div");
+div.className = "card";
+
+// Fix image path typo for 'lehanga' -> 'lehenga'
+let imgPath = item.image ? item.image.replace('lehanga', 'lehenga') : '../assets/products/default.jpg';
+
+// If image file does not exist, fallback handled by onerror
+
+div.innerHTML = `
+<img src="${imgPath}" onerror="this.src='../assets/products/default.jpg'">
+<h3>${item.name}</h3>
+<p class="price">₹${item.price}</p>
+
+<button onclick="addToCart('${item.name}',${item.price})">Add to Cart</button>
+<button onclick="removeFromWishlist(${index})">Remove</button>
+`;
+
+container.appendChild(div);
+});
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    showLoading();
-    displayWishlist();
-    updateCartCount();
-    updateNavbarUser();
-});
+function removeFromWishlist(index){
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+wishlist.splice(index,1);
+localStorage.setItem("wishlist", JSON.stringify(wishlist));
+displayWishlist();
+}
 
-window.addEventListener("load", function() {
-    hideLoading();
-    updateWishlistUI();
-});
+displayWishlist();
 </script>
 
 </body>

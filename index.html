@@ -36,7 +36,7 @@
         <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
     </ul>
 
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchProducts()">
+    <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchProducts()" style="width:180px;max-width:100%;font-size:15px;padding:7px 12px;border-radius:6px;border:1.5px solid #eee;">
 </nav>
 
 <!-- Header -->
@@ -61,85 +61,92 @@
 
 <!-- Products -->
 <section class="gallery">
-
-<div class="card" data-category="party" onclick="viewProduct('Designer Saree', 9999, 'assets/products/designer-saree1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Designer Saree" onclick="toggleWishlist('Designer Saree', 9999, 'assets/products/designer-saree1.jpg', event)">🤍</button>
-        <img src="assets/products/designer-saree1.jpg" alt="Designer Saree">
-    <p class="brand">Reshma</p>
+<div class="card" data-category="saree" onclick="viewProduct('Designer Saree', 4999, 'assets/products/designer-saree1.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Designer Saree" onclick="toggleWishlist('Designer Saree', 4999, 'assets/products/designer-saree1.jpg', event)">🤍</button>
+    <img src="assets/products/designer-saree1.jpg" alt="Designer Saree" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
+    <p class="brand">Reshma Designs</p>
     <h3>Designer Saree</h3>
+    <p class="rating">⭐⭐⭐⭐ (4.2)</p>
+    <p class="price">₹4,999</p>
+    <button onclick="addToCart('Designer Saree', 4999); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
+</div>
+
+<div class="card" data-category="lehenga" onclick="viewProduct('Lehenga 6', 7999, 'assets/products/lehenga6.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Lehenga 6" onclick="toggleWishlist('Lehenga 6', 7999, 'assets/products/lehenga6.jpg', event)">🤍</button>
+    <img src="assets/products/lehenga6.jpg" alt="Lehenga 6" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
+    <p class="brand">Reshma Designs</p>
+    <h3>Lehenga 6</h3>
     <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
-    <p class="price">₹9999</p>
-    <button onclick="addToCart('Designer Saree', 9999); event.stopPropagation();">Add to Bag</button>
+    <p class="price">₹7,999</p>
+    <button onclick="addToCart('Lehenga 6', 7999); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
-<div class="card" data-category="party" onclick="viewProduct('Lehenga', 5999, 'assets/products/lehenga6.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Lehenga" onclick="toggleWishlist('Lehenga', 5999, 'assets/products/lehenga6.jpg', event)">🤍</button>
-        <img src="assets/products/lehenga6.jpg" alt="Lehenga">
-    <p class="brand">Reshma</p>
-    <h3>Lehenga</h3>
-    <p class="rating">⭐⭐⭐⭐☆ (4.3)</p>
-    <p class="price">₹5999</p>
-    <button onclick="addToCart('Lehenga', 5999); event.stopPropagation();">Add to Bag</button>
+<div class="card" data-category="party-wear" onclick="viewProduct('Party Wear 1', 2999, 'assets/products/party-wear1.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Party Wear 1" onclick="toggleWishlist('Party Wear 1', 2999, 'assets/products/party-wear1.jpg', event)">🤍</button>
+    <img src="assets/products/party-wear1.jpg" alt="Party Wear 1" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
+    <p class="brand">Reshma Designs</p>
+    <h3>Party Wear 1</h3>
+    <p class="rating">⭐⭐⭐⭐ (4.1)</p>
+    <p class="price">₹2,999</p>
+    <button onclick="addToCart('Party Wear 1', 2999); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
-<div class="card" data-category="party" onclick="viewProduct('Party Wear', 2999, 'assets/products/partywear1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Party Wear" onclick="toggleWishlist('Party Wear', 2999, 'assets/products/partywear1.jpg', event)">🤍</button>
-        <img src="assets/products/partywear1.jpg" alt="Party Wear">
-    <p class="brand">Reshma</p>
-    <h3>Party Wear</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.6)</p>
-    <p class="price">₹2999</p>
-    <button onclick="addToCart('Party Wear', 2999); event.stopPropagation();">Add to Bag</button>
+<div class="card" data-category="wedding-dress" onclick="viewProduct('Wedding Dress 1', 10499, 'assets/products/wedding-dress1.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Wedding Dress 1" onclick="toggleWishlist('Wedding Dress 1', 10499, 'assets/products/wedding-dress1.jpg', event)">🤍</button>
+    <img src="assets/products/wedding-dress1.jpg" alt="Wedding Dress 1" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
+    <p class="brand">Reshma Designs</p>
+    <h3>Wedding Dress 1</h3>
+    <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
+    <p class="price">₹10,499</p>
+    <button onclick="addToCart('Wedding Dress 1', 10499); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
-<div class="card" data-category="wedding" onclick="viewProduct('Wedding Dress', 15999, 'assets/products/wedding-dress1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Wedding Dress" onclick="toggleWishlist('Wedding Dress', 15999, 'assets/products/wedding-dress1.jpg', event)">🤍</button>
-        <img src="assets/products/wedding-dress1.jpg" alt="Wedding Dress">
-    <p class="brand">Reshma</p>
-    <h3>Wedding Dress</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.8)</p>
-    <p class="price">₹15999</p>
-    <button onclick="addToCart('Wedding Dress', 15999); event.stopPropagation();">Add to Bag</button>
-</div>
-
-<div class="card" data-category="formal" onclick="viewProduct('Formal Wear', 3999, 'assets/products/formal.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Formal Wear" onclick="toggleWishlist('Formal Wear', 3999, 'assets/products/formal.jpg', event)">🤍</button>
-        <img src="assets/products/formal.jpg" alt="Formal Wear">
-    <p class="brand">Reshma</p>
+<div class="card" data-category="formal" onclick="viewProduct('Formal Wear', 2599, 'assets/products/formal.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Formal Wear" onclick="toggleWishlist('Formal Wear', 2599, 'assets/products/formal.jpg', event)">🤍</button>
+    <img src="assets/products/formal.jpg" alt="Formal Wear">
+    <p class="brand">Reshma Designs</p>
     <h3>Formal Wear</h3>
     <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
-    <p class="price">₹3999</p>
-    <button onclick="addToCart('Formal Wear', 3999); event.stopPropagation();">Add to Bag</button>
+    <p class="price">₹2,599</p>
+    <button onclick="addToCart('Formal Wear', 2599); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
-<div class="card" data-category="kids" onclick="viewProduct('Kids Wear', 1999, 'assets/products/kids-wear1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Kids Wear" onclick="toggleWishlist('Kids Wear', 1999, 'assets/products/kids-wear1.jpg', event)">🤍</button>
-        <img src="assets/products/kids-wear1.jpg" alt="Kids Wear">
-    <p class="brand">Reshma</p>
+<div class="card" data-category="kids-wear" onclick="viewProduct('Kids Wear', 1499, 'assets/products/kids-wear.jpg')" style="cursor:pointer;">
+    <button class="wishlist-btn" data-product="Kids Wear" onclick="toggleWishlist('Kids Wear', 1499, 'assets/products/kids-wear.jpg', event)">🤍</button>
+    <img src="assets/products/kids-wear.jpg" alt="Kids Wear">
+    <p class="brand">Reshma Designs</p>
     <h3>Kids Wear</h3>
     <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
     <p class="price">₹1999</p>
-    <button onclick="addToCart('Kids Wear', 1999); event.stopPropagation();">Add to Bag</button>
+    <button onclick="addToCart('Kids Ethnic Wear', 1999); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
 <div class="card" data-category="jewelry" onclick="viewProduct('Gold Bracelet', 2499, 'assets/products/gold-bracelet1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Gold Bracelet" onclick="toggleWishlist('Gold Bracelet', 2499, 'assets/products/gold-bacelet.jpg', event)">🤍</button>
-        <img src="assets/products/gold-bacelet.jpg" alt="Gold Bracelet">
+    <button class="wishlist-btn" data-product="Gold Bracelet" onclick="toggleWishlist('Gold Bracelet', 2499, 'assets/products/gold-bracelet1.jpg', event)">💍</button>
+        <img src="assets/products/gold-bracelet.jpg" alt="Gold Bracelet">
     <p class="brand">Reshma</p>
     <h3>Gold Bracelet</h3>
     <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
     <p class="price">₹2499</p>
     <button onclick="addToCart('Gold Bracelet', 2499); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
 <div class="card" data-category="jewelry" onclick="viewProduct('Pearl Earrings', 1499, 'assets/products/pearl-earrings1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Pearl Earrings" onclick="toggleWishlist('Pearl Earrings', 1499, 'assets/products/earrings1.jpg', event)">🤍</button>
-        <img src="assets/products/earrings1.jpg" alt="Pearl Earrings">
+    <button class="wishlist-btn" data-product="Designer Earrings" onclick="toggleWishlist('Designer Earrings', 1499, 'assets/products/earrings1.jpg', event)">💍</button>
+        <img src="assets/products/earrings1.jpg" alt="Designer Earrings">
     <p class="brand">Reshma</p>
-    <h3>Pearl Earrings</h3>
+    <h3>Designer Earrings</h3>
     <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
     <p class="price">₹1499</p>
-    <button onclick="addToCart('Pearl Earrings', 1499); event.stopPropagation();">Add to Bag</button>
+    <button onclick="addToCart('Designer Earrings', 1499); event.stopPropagation();">Add to Bag</button>
+    <div class="qty">1</div>
 </div>
 
 </section>
@@ -157,16 +164,50 @@
 <script src="js/script.js"></script>
 
 <script>
-// Initialize page
-document.addEventListener("DOMContentLoaded", function() {
-    showLoading();
-    updateCartCount();
-    updateNavbarUser();
-});
+// Star rating rendering for all .star-rating elements
+function renderStars() {
+  document.querySelectorAll('.star-rating').forEach(function(starDiv) {
+    const rating = parseFloat(starDiv.getAttribute('data-rating')) || 0;
+    let html = '';
+    for (let i = 1; i <= 5; i++) {
+      if (rating >= i) html += '★';
+      else if (rating >= i - 0.5) html += '☆';
+      else html += '☆';
+    }
+    html += ` <span style='font-size:13px;color:#888;'>(${rating.toFixed(1)})</span>`;
+    starDiv.innerHTML = html;
+    starDiv.style.color = '#ffb400';
+    starDiv.style.fontSize = '18px';
+    starDiv.style.margin = '5px 0';
+  });
+}
 
-window.addEventListener("load", function() {
-    hideLoading();
-    updateWishlistUI();
+// Quantity controls for each card
+function changeQty(btn, delta, name, price) {
+  const qtySpan = btn.parentElement.querySelector('.qty');
+  let qty = parseInt(qtySpan.innerText);
+  qty = Math.max(1, qty + delta);
+  qtySpan.innerText = qty;
+}
+
+// Add to cart with quantity
+function addToCart(name, price, btn) {
+  const card = btn.closest('.card');
+  const qty = card ? parseInt(card.querySelector('.qty')?.innerText || '1') : 1;
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let item = cart.find(i => i.name === name);
+  if (item) {
+    item.quantity = (item.quantity || 1) + qty;
+  } else {
+    cart.push({ name, price, quantity: qty });
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  showNotification(`✅ ${name} x${qty} added to cart!`);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderStars();
 });
 </script>
 
@@ -184,6 +225,13 @@ window.addEventListener("load", function() {
         <p>Help & Support</p>
         <p>Returns & Refunds</p>
         <p>Shipping Info</p>
+        <div class="quick-links">
+            <h5 style="margin:10px 0 5px 0; color:#fff;">Quick Links</h5>
+            <a href="index.html" style="color:#fff;">Home</a> |
+            <a href="pages/collection.html" style="color:#fff;">Collection</a> |
+            <a href="pages/wishlist.html" style="color:#fff;">Wishlist</a> |
+            <a href="pages/contact.html" style="color:#fff;">Contact</a>
+        </div>
     </div>
 
     <div class="footer-column">

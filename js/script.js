@@ -126,21 +126,230 @@ function logout() {
     window.location.href = window.location.pathname.includes("/pages/") ? "../index.html" : "index.html";
 }
 
-// ========== PRODUCT FILTERING ==========
+// ========== ADVANCED PRODUCT FILTERING, SORTING, RENDERING ==========
+// Product data (auto-generated from assets/products)
+const PRODUCTS = [
+    { name: "Designer Saree", brand: "Reshma Designs", price: 4999, image: "assets/products/designer-saree1.jpg", category: "saree", rating: 4.2, badge: "Best Seller" },
+    { name: "Designer Saree Red", brand: "Reshma Designs", price: 5299, image: "assets/products/designer-saree2.jpg", category: "saree", rating: 4.3, badge: "New" },
+    { name: "Designer Saree Pink", brand: "Reshma Designs", price: 4899, image: "assets/products/disigner-saree3.jpg", category: "saree", rating: 4.1 },
+    { name: "Lehanga Yellow", brand: "Reshma Designs", price: 7999, image: "assets/products/lehanga6.jpg", category: "lehanga", rating: 4.5, badge: "50% OFF" },
+    { name: "Lehanga Blue", brand: "Reshma Designs", price: 8499, image: "assets/products/lehanga7.jpg", category: "lehanga", rating: 4.4 },
+    { name: "Lehanga Green", brand: "Reshma Designs", price: 8999, image: "assets/products/lehanga8.jpg", category: "lehanga", rating: 4.6 },
+    { name: "Lehanga Pink", brand: "Reshma Designs", price: 9299, image: "assets/products/lehanga9.jpg", category: "lehanga", rating: 4.2 },
+    { name: "Lehanga Orange", brand: "Reshma Designs", price: 9999, image: "assets/products/lehanga10.jpg", category: "lehanga", rating: 4.7 },
+    { name: "Lehanga Purple", brand: "Reshma Designs", price: 10499, image: "assets/products/lehanga11.jpg", category: "lehanga", rating: 4.8 },
+    { name: "Party Wear Red", brand: "Reshma Designs", price: 2999, image: "assets/products/party-wear1.jpg", category: "party-wear", rating: 4.1, badge: "Trending" },
+    { name: "Party Wear Blue", brand: "Reshma Designs", price: 3199, image: "assets/products/party-wear.jpg", category: "party-wear", rating: 4.0 },
+    { name: "Western Wear", brand: "Reshma Designs", price: 3499, image: "assets/products/western-wear.jpg", category: "western-wear", rating: 4.6 },
+    { name: "Western Wear Pink", brand: "Reshma Designs", price: 3399, image: "assets/products/westren-wear.jpg", category: "western-wear", rating: 4.5 },
+    { name: "Kids Wear Yellow", brand: "Reshma Designs", price: 1499, image: "assets/products/kids-wear.jpg", category: "kids-wear", rating: 4.0 },
+    { name: "Kids Wear Blue", brand: "Reshma Designs", price: 1599, image: "assets/products/kids-wear2.jpg", category: "kids-wear", rating: 4.1 },
+    { name: "Kids Wear Green", brand: "Reshma Designs", price: 1699, image: "assets/products/kids-wear3.jpg", category: "kids-wear", rating: 4.2 },
+    { name: "Kids Wear Pink", brand: "Reshma Designs", price: 1799, image: "assets/products/kids-wear4.jpg", category: "kids-wear", rating: 4.3 },
+    { name: "Kids Wear Purple", brand: "Reshma Designs", price: 1899, image: "assets/products/kids-wear5.jpg", category: "kids-wear", rating: 4.4 },
+    { name: "Gold Bacelet", brand: "Reshma Designs", price: 2499, image: "assets/products/gold-bacelet.jpg", category: "bacelet", rating: 4.7 },
+    { name: "Bacelet Silver", brand: "Reshma Designs", price: 2299, image: "assets/products/bacelets.jpg", category: "bacelet", rating: 4.5 },
+    { name: "Diomand Bacelet", brand: "Reshma Designs", price: 3499, image: "assets/products/diomand-bacelet.jpg", category: "bacelet", rating: 4.8, badge: "Premium" },
+    { name: "Chain Gold", brand: "Reshma Designs", price: 1999, image: "assets/products/chains.jpg", category: "necklace", rating: 4.2 },
+    { name: "Gold Necklace", brand: "Reshma Designs", price: 4999, image: "assets/products/gold-necklace.jpg", category: "necklace", rating: 4.9, badge: "Best Seller" },
+    { name: "Jewellary Set Red", brand: "Reshma Designs", price: 3999, image: "assets/products/jewellery-set.jpg", category: "jewelry", rating: 4.5 },
+    { name: "Jewellary Set Blue", brand: "Reshma Designs", price: 4199, image: "assets/products/jewellery-set1.jpg", category: "jewelry", rating: 4.6 },
+    { name: "Jewellary Set Green", brand: "Reshma Designs", price: 4299, image: "assets/products/jewellery-set2.jpg", category: "jewelry", rating: 4.7 },
+    { name: "Jewellary Set Pink", brand: "Reshma Designs", price: 4399, image: "assets/products/jewellary-set3.jpg", category: "jewelry", rating: 4.8 },
+    { name: "Earrings Gold", brand: "Reshma Designs", price: 999, image: "assets/products/earrings.jpg", category: "earrings", rating: 4.3 },
+    { name: "Earrings Pearl", brand: "Reshma Designs", price: 1099, image: "assets/products/earrings1.jpg", category: "earrings", rating: 4.4 },
+    { name: "Ring Diamond", brand: "Reshma Designs", price: 799, image: "assets/products/ring.jpg", category: "accessories", rating: 4.2 },
+    { name: "Formal Wear", brand: "Reshma Designs", price: 2599, image: "assets/products/formal.jpg", category: "formal", rating: 4.3 },
+    { name: "Wedding Dress Red", brand: "Reshma Designs", price: 9999, image: "assets/products/wedding-dress.jpg", category: "wedding-dress", rating: 4.8, badge: "Best Seller" },
+    { name: "Wedding Dress Blue", brand: "Reshma Designs", price: 10499, image: "assets/products/wedding-dress1.jpg", category: "wedding-dress", rating: 4.7 },
+    { name: "Wedding Dress Green", brand: "Reshma Designs", price: 10999, image: "assets/products/wedding-dress2.jpg", category: "wedding-dress", rating: 4.6 },
+    { name: "Wedding Dress Pink", brand: "Reshma Designs", price: 11499, image: "assets/products/wedding-dress5.jpg", category: "wedding-dress", rating: 4.5 },
+    { name: "Indian Wedding Dress Gold", brand: "Reshma Designs", price: 11999, image: "assets/products/indian-wedding-dress3.jpg", category: "wedding-dress", rating: 4.7 },
+    { name: "Indian Wedding Dress Pearl", brand: "Reshma Designs", price: 12499, image: "assets/products/indian-wedding-dress4.jpg", category: "wedding-dress", rating: 4.8 },
+];
 
-// Filter products by category
-function filterProducts(category) {
-    const cards = document.querySelectorAll(".card");
-    
-    cards.forEach(card => {
-        if(category === "all") {
-            card.style.display = "block";
-        } else {
-            const cardCategory = card.getAttribute("data-category");
-            card.style.display = cardCategory === category ? "block" : "none";
-        }
+let filteredProducts = [...PRODUCTS];
+
+function renderQuickFilterBar() {
+    const bar = document.getElementById("quickFilterBar");
+    if (!bar) return;
+    const categories = [
+        { label: "All", value: "all" },
+        { label: "Saree", value: "saree" },
+        { label: "Lehenga", value: "lehenga" },
+        { label: "Party Wear", value: "party-wear" },
+        { label: "Kids Wear", value: "kids-wear" },
+        { label: "Jewelry", value: "jewelry" },
+        { label: "Bracelet", value: "bracelet" },
+        { label: "Necklace", value: "necklace" },
+        { label: "Earrings", value: "earrings" },
+        { label: "Accessories", value: "accessories" },
+        { label: "Wedding Dress", value: "wedding-dress" },
+        { label: "Western Wear", value: "western-wear" },
+        { label: "Formal", value: "formal" }
+    ];
+    bar.innerHTML = categories.map(cat => `<span class="quick-filter-chip" data-value="${cat.value}">${cat.label}</span>`).join("");
+    bar.querySelectorAll(".quick-filter-chip").forEach(chip => {
+        chip.onclick = function() {
+            document.getElementById("categoryFilter").value = chip.getAttribute("data-value");
+            filterProducts();
+            bar.querySelectorAll(".quick-filter-chip").forEach(c => c.classList.remove("active"));
+            chip.classList.add("active");
+        };
     });
 }
+
+function renderResultSortInfo(products) {
+    const info = document.getElementById("resultSortInfo");
+    if (!info) return;
+    const sortType = document.getElementById("sortFilter")?.value || "default";
+    let sortLabel = "Default";
+    if (sortType === "price-low") sortLabel = "Price: Low to High";
+    else if (sortType === "price-high") sortLabel = "Price: High to Low";
+    else if (sortType === "name") sortLabel = "Name: A to Z";
+    else if (sortType === "rating") sortLabel = "Rating";
+    info.innerHTML = `<span>${products.length} results</span><span>Sorted by: <strong>${sortLabel}</strong></span>`;
+}
+
+function renderProducts(products) {
+    const grid = document.getElementById("productGrid");
+    const loading = document.getElementById("loading");
+    const noProducts = document.getElementById("noProducts");
+    if (!grid) return;
+    grid.innerHTML = "";
+    if (loading) loading.style.display = "block";
+    if (noProducts) noProducts.style.display = "none";
+    renderResultSortInfo(products);
+    setTimeout(() => {
+        if (loading) loading.style.display = "none";
+        if (products.length === 0) {
+            if (noProducts) noProducts.style.display = "block";
+            return;
+        }
+        products.forEach(product => {
+            const card = document.createElement("div");
+            card.className = "card premium-card";
+            card.setAttribute("data-category", product.category);
+            card.setAttribute("data-price", product.price);
+            card.setAttribute("data-rating", product.rating);
+            // Product badge
+            let badgeHTML = product.badge ? `<span class="product-badge">${product.badge}</span>` : "";
+            // Quick add quantity
+            let quickAddHTML = `<div class='quick-add'>
+                <button class='quick-add-btn' onclick='event.stopPropagation(); updateCardQty(this, "-", "${product.name}")'>-</button>
+                <span class='quick-add-qty' data-name='${product.name}'>1</span>
+                <button class='quick-add-btn' onclick='event.stopPropagation(); updateCardQty(this, "+", "${product.name}")'>+</button>
+                <button style='margin-left:8px;' onclick='event.stopPropagation(); addToCartWithQty("${product.name}", ${product.price}, "${product.image}")'>Add</button>
+            </div>`;
+            card.innerHTML = `
+                ${badgeHTML}
+                <button class="wishlist-btn" data-product="${product.name}" onclick="toggleWishlist('${product.name}', ${product.price}, '${product.image}', event)">🤍</button>
+                <img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.onerror=null;this.src='../assets/products/default.jpg';">
+                <div class="brand">${product.brand}</div>
+                <h3>${product.name}</h3>
+                <div class="rating">${displayRating(product.rating)}</div>
+                <div class="price">₹${product.price.toLocaleString()}</div>
+                ${quickAddHTML}
+            `;
+            card.onclick = () => viewProduct(product.name, product.price, product.image);
+            grid.appendChild(card);
+        });
+        updateWishlistUI();
+    }, 400); // Simulate loading
+}
+
+// Quick add quantity logic
+function updateCardQty(btn, op, name) {
+    const qtySpan = btn.parentElement.querySelector('.quick-add-qty');
+    let qty = parseInt(qtySpan.innerText);
+    if (op === "+") qty++;
+    else if (op === "-" && qty > 1) qty--;
+    qtySpan.innerText = qty;
+}
+
+function addToCartWithQty(name, price, image) {
+    // Find the correct qty from the visible card
+    const qtySpan = document.querySelector(`.quick-add-qty[data-name='${name}']`);
+    let qty = qtySpan ? parseInt(qtySpan.innerText) : 1;
+    for (let i = 0; i < qty; i++) {
+        addToCart(name, price);
+    }
+    showNotification(`✅ ${name} x${qty} added to cart!`);
+}
+
+function filterProducts() {
+    const category = document.getElementById("categoryFilter")?.value || "all";
+    const price = parseInt(document.getElementById("priceFilter")?.value || 15000);
+    let products = [...PRODUCTS];
+    if (category !== "all") {
+        products = products.filter(p => p.category === category);
+    }
+    products = products.filter(p => p.price <= price);
+    filteredProducts = products;
+    sortProducts();
+}
+
+function updatePriceLabel(val) {
+    document.getElementById("priceLabel").innerText = `Up to ₹${parseInt(val).toLocaleString()}`;
+    filterProducts();
+}
+
+function sortProducts() {
+    const sortType = document.getElementById("sortFilter")?.value || "default";
+    let products = [...filteredProducts];
+    switch (sortType) {
+        case "price-low":
+            products.sort((a, b) => a.price - b.price);
+            break;
+        case "price-high":
+            products.sort((a, b) => b.price - a.price);
+            break;
+        case "name":
+            products.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case "rating":
+            products.sort((a, b) => b.rating - a.rating);
+            break;
+    }
+    renderProducts(products);
+}
+
+function searchProducts() {
+    const searchInput = document.getElementById("searchInput");
+    if (!searchInput) return;
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    let products = [...PRODUCTS];
+    if (searchTerm) {
+        products = products.filter(p =>
+            p.name.toLowerCase().includes(searchTerm) ||
+            p.brand.toLowerCase().includes(searchTerm) ||
+            (p.category && p.category.toLowerCase().includes(searchTerm))
+        );
+    }
+    filteredProducts = products;
+    sortProducts();
+}
+
+// On page load for collection.html
+document.addEventListener("DOMContentLoaded", function() {
+    if (window.location.pathname.includes("collection.html")) {
+        renderQuickFilterBar();
+        renderProducts(PRODUCTS);
+        document.getElementById("categoryFilter")?.addEventListener("change", function() {
+            filterProducts();
+            // Sync quick filter bar
+            const val = this.value;
+            document.querySelectorAll(".quick-filter-chip").forEach(chip => {
+                chip.classList.toggle("active", chip.getAttribute("data-value") === val);
+            });
+        });
+        document.getElementById("priceFilter")?.addEventListener("input", e => updatePriceLabel(e.target.value));
+        document.getElementById("sortFilter")?.addEventListener("change", sortProducts);
+        document.getElementById("searchInput")?.addEventListener("input", searchProducts);
+        // Activate 'All' chip by default
+        document.querySelector(".quick-filter-chip[data-value='all']")?.classList.add("active");
+    }
+});
 
 // ========== SEARCH FUNCTIONALITY ==========
 
@@ -387,9 +596,12 @@ function goBack() {
 function loadProductDetails() {
     const product = JSON.parse(localStorage.getItem("selectedProduct")) || {};
     if(product.name && product.price && product.image) {
-        document.getElementById("productName").innerText = product.name;
-        document.getElementById("productPrice").innerText = "₹" + product.price;
-        document.getElementById("productImage").src = product.image;
+        const nameElem = document.getElementById("productName");
+        if (nameElem) nameElem.innerText = product.name;
+        const priceElem = document.getElementById("productPrice");
+        if (priceElem) priceElem.innerText = "₹" + product.price;
+        const imgElem = document.getElementById("productImage");
+        if (imgElem) imgElem.src = product.image;
         document.title = product.name + " - Reshma Designs";
     }
 }
