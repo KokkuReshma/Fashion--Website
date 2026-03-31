@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product</title>
+
+<style>
+body{
+text-align:center;
+font-family:Arial;
+}
+
+img{
+border-radius:10px;
+}
+
+button{
+background:#ff3f6c;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+select{
+padding:5px;
+margin:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2 id="name"></h2>
+
+<img id="img" width="250" 
+onerror="this.src='../assets/products/default.jpg'">
+
+<p id="price"></p>
+
+<h4>Select Size:</h4>
+<select id="size">
+<option>Small</option>
+<option>Medium</option>
+<option>Large</option>
+</select>
+
+<br><br>
+
+<button onclick="add()">Add to Cart</button>
+
+<script>
+
+// ✅ IMPORTANT FIX
+let p = JSON.parse(localStorage.getItem("product"));
+
+if(p){
+document.getElementById("name").innerText = p.name;
+document.getElementById("img").src = p.image;
+document.getElementById("price").innerText = "₹" + p.price;
+}
+
+function add(){
+
+let size = document.getElementById("size").value;
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+name: p.name,
+price: p.price,
+image: p.image,
+size: size
+});
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert("✅ Added to cart with size: " + size);
+}
+
+</script>
+
+</body>
+</html>

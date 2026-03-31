@@ -4,230 +4,308 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Collection - Reshma Designs</title>
-<link rel="stylesheet" href="../css/style.css">
+
+<style>
+
+/* BODY */
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f9f9f9;
+}
+
+/* NAV */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    background:#fff;
+}
+
+.logo img{height:40px;}
+
+.menu{
+    display:flex;
+    gap:20px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+}
+
+/* HEADER */
+.scroll-text{
+    overflow:hidden;
+    white-space:nowrap;
+    background:#ffe6ef;
+}
+
+.scroll-text span{
+    display:inline-block;
+    padding:10px;
+    font-size:22px;
+    animation:scroll 10s linear infinite;
+    background:linear-gradient(90deg, red, orange, pink, purple, blue);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+@keyframes scroll{
+    from{transform:translateX(100%);}
+    to{transform:translateX(-100%);}
+}
+
+/* FILTER */
+.filter-bar{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:10px;
+    background:#ffe6ef;
+}
+
+/* PRODUCTS GRID */
+.gallery{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap:20px;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    position:relative;
+    cursor:pointer;
+}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+/* ❤️ */
+.wishlist-btn{
+    position:absolute;
+    top:8px;
+    right:8px;
+    border:none;
+    background:#fff;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+/* PRICE */
+.price{
+    color:#ff3f6c;
+    font-weight:bold;
+}
+
+/* QTY */
+.qty-box{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+}
+
+/* ➕➖ BUTTONS */
+.qty-box button{
+    background:#ff3f6c;
+    color:#fff;
+    border:none;
+    padding:4px 8px;
+    border-radius:4px;
+}
+
+/* ADD BUTTON */
+.add-btn{
+    background:#ff3f6c;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    margin-top:5px;
+    border-radius:5px;
+    cursor:pointer;
+}
+/* FOOTER */
+footer{
+    background:#ff4d79;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:40px;
+}
+
+footer a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 5px;
+}
+
+
+</style>
 </head>
 
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+<!-- HEADER -->
+<div class="scroll-text">
+<span>✨ Reshma Designers ✨</span>
 </div>
 
-<!-- Navbar -->
 <nav>
-    <div class="logo">
-        <img src="../assets/branding/logo.svg">
-    </div>
+<div class="logo">
+<img src="../assets/branding/logo.svg">
+</div>
 
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="menu">
+<a href="../index.html">Home</a>
+<a href="#">Collection</a>
+<a href="contact.html">Support</a>
+<a href="login.html">Login</a>
+</div>
 
-    <ul id="navMenu">
-        <li><a href="../index.html">Home</a></li>
-        <li><a class="active" href="#">Collection</a></li>
-        <li><a href="wishlist.html">❤️ Wishlist</a></li>
-        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
-    </ul>
-
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="applyFilters()" style="width:180px;max-width:100%;font-size:15px;padding:7px 12px;border-radius:6px;border:1.5px solid #eee;">
+<input type="text" id="searchInput" placeholder="Search..." onkeyup="applyFilters()">
 </nav>
 
-<!-- Header -->
-<header class="page-title">
-<h1>All Collections</h1>
-</header>
-
-<!-- Filter + Sort -->
 <div class="filter-bar">
 <select id="categoryFilter" onchange="applyFilters()">
 <option value="all">All</option>
 <option value="saree">Saree</option>
 <option value="lehenga">Lehenga</option>
-<option value="jewelry">Jewelry</option>
-</select>
-
-<select id="sortFilter" onchange="applyFilters()">
-<option value="default">Sort</option>
-<option value="low">Price Low → High</option>
-<option value="high">Price High → Low</option>
 </select>
 </div>
 
-<!-- Product Grid -->
-<section class="gallery" id="productGrid"></section>
-
-<!-- Cart -->
-<div id="cartBox" class="cart-box">
-<h3>Your Cart</h3>
-<ul id="cartItems"></ul>
-<p>Total: ₹<span id="cartTotal">0</span></p>
-<button onclick="closeCart()">Close</button>
-</div>
-
-<!-- Footer -->
-<footer class="site-footer">
-    <div class="footer-column">
-        <h4>Contact</h4>
-        <p>📞 2345678902</p>
-        <p>✉️ reshmafashion@gmail.com</p>
-        <p>📍 Nellore, Andhra Pradesh</p>
-    </div>
-
-    <div class="footer-column">
-        <h4>Customer Care</h4>
-        <p>Help & Support</p>
-        <p>Returns & Refunds</p>
-        <p>Shipping Info</p>
-        <div class="quick-links">
-            <h5 style="margin:10px 0 5px 0; color:#fff;">Quick Links</h5>
-            <a href="../index.html" style="color:#fff;">Home</a> |
-            <a href="collection.html" style="color:#fff;">Collection</a> |
-            <a href="wishlist.html" style="color:#fff;">Wishlist</a> |
-            <a href="contact.html" style="color:#fff;">Contact</a>
-        </div>
-    </div>
-
-    <div class="footer-column">
-        <h4>Follow Us</h4>
-        <p>Instagram | Facebook</p>
-        <p>YouTube | Pinterest</p>
-    </div>
-
-    <div class="footer-column">
-        <p>© 2026 Reshma Designs</p>
-        <p>Style that defines you 💖</p>
-    </div>
-</footer>
+<div class="gallery" id="productGrid"></div>
 
 <script>
 
+let cart=[];
+let wishlist=[];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+let products=[
+{ name: "Designer Saree 1", price: 4999, category: "saree", image: "../assets/products/designer-saree1.jpg", rating: 4.7 },
+    { name: "Designer Saree 2", price: 5299, category: "saree", image: "../assets/products/designer-saree2.jpg", rating: 4.6 },
+    { name: "Designer Saree 3", price: 4899, category: "saree", image: "../assets/products/designer-saree3.jpg", rating: 4.5 },
+    { name: "Lehenga 6", price: 7999, category: "lehenga", image: "../assets/products/lehenga6.jpg", rating: 4.8 },
+    { name: "Lehenga 7", price: 8499, category: "lehenga", image: "../assets/products/lehenga7.jpg", rating: 4.7 },
+    { name: "Lehenga 8", price: 8999, category: "lehenga", image: "../assets/products/lehenga8.jpg", rating: 4.6 },
+    { name: "Lehenga 9", price: 9299, category: "lehenga", image: "../assets/products/lehenga9.jpg", rating: 4.5 },
+    { name: "Lehenga 10", price: 9999, category: "lehenga", image: "../assets/products/lehenga10.jpg", rating: 4.9 },
+    { name: "Lehenga 11", price: 10499, category: "lehenga", image: "../assets/products/lehenga11.jpg", rating: 4.8 },
+    { name: "Party Wear 1", price: 2999, category: "party-wear", image: "../assets/products/party-wear1.jpg", rating: 4.7 },
+    { name: "Party Wear", price: 3199, category: "party-wear", image: "../assets/products/party-wear.jpg", rating: 4.6 },
+    { name: "Western Wear", price: 3499, category: "western-wear", image: "../assets/products/western-wear.jpg", rating: 4.5 },
+    { name: "Kids Wear", price: 1499, category: "kids-wear", image: "../assets/products/kids-wear.jpg", rating: 4.7 },
+    { name: "Kids Wear 2", price: 1599, category: "kids-wear", image: "../assets/products/kids-wear2.jpg", rating: 4.6 },
+    { name: "Kids Wear 3", price: 1699, category: "kids-wear", image: "../assets/products/kids-wear3.jpg", rating: 4.5 },
+    { name: "Kids Wear 4", price: 1799, category: "kids-wear", image: "../assets/products/kids-wear4.jpg", rating: 4.8 },
+    { name: "Kids Wear 5", price: 1899, category: "kids-wear", image: "../assets/products/kids-wear5.jpg", rating: 4.9 },
+    { name: "Gold Bracelet", price: 2499, category: "bracelet", image: "../assets/products/gold-bracelet.jpg", rating: 4.7 },
+    { name: "Bracelets", price: 2299, category: "bracelet", image: "../assets/products/bracelets.jpg", rating: 4.6 },
+    { name: "Diamond Bracelet", price: 3499, category: "bracelet", image: "../assets/products/diamond-bracelet.jpg", rating: 4.8 },
+    { name: " Diamond Chains", price: 1999, category: "necklace", image: "../assets/products/chains.jpg", rating: 4.5 },
+    { name: "Gold Necklace", price: 4999, category: "necklace", image: "../assets/products/gold-necklace.jpg", rating: 4.7 },
+    { name: "Jewellery Set", price: 3999, category: "jewelry", image: "../assets/products/jewellery-set.jpg", rating: 4.8 },
+    { name: "Jewellery Set 1", price: 4199, category: "jewelry", image: "../assets/products/jewellery-set1.jpg", rating: 4.7 },
+    { name: "Jewellery Set 2", price: 4299, category: "jewelry", image: "../assets/products/jewellery-set2.jpg", rating: 4.6 },
+    { name: "Jewellery Set 3", price: 4399, category: "jewelry", image: "../assets/products/jewellery-set3.jpg", rating: 4.5 },
+    { name: "Earrings Gold", price: 999, category: "earrings", image: "../assets/products/earrings.jpg", rating: 4.7 },
+    { name: "Earrings 1", price: 1099, category: "earrings", image: "../assets/products/earrings1.jpg", rating: 4.6 },
+    { name: "Formal Wear", price: 2599, category: "formal", image: "../assets/products/formal.jpg", rating: 4.5 },
+    { name: "Wedding Dress", price: 9999, category: "wedding-dress", image: "../assets/products/wedding-dress.jpg", rating: 4.8 },
+    { name: "Wedding Dress 1", price: 10499, category: "wedding-dress", image: "../assets/products/wedding-dress1.jpg", rating: 4.7 },
+    { name: "Wedding Dress 2", price: 10999, category: "wedding-dress", image: "../assets/products/wedding-dress2.jpg", rating: 4.6 },
+    { name: "Wedding Dress 5", price: 11499, category: "wedding-dress", image: "../assets/products/wedding-dress5.jpg", rating: 4.5 },
+    { name: "Indian Wedding Dress 3", price: 11999, category: "wedding-dress", image: "../assets/products/indian-wedding-dress3.jpg", rating: 4.8 },
+    { name: "Indian Wedding Dress 4", price: 12499, category: "wedding-dress", image: "../assets/products/indian-wedding-dress4.jpg", rating: 4.7 }
 
+];
+
+/* RENDER */
 function renderProducts(list){
-    let grid = document.getElementById("productGrid");
-    grid.innerHTML = "";
-    if(list.length === 0){
-        grid.innerHTML = "<h2>No products found</h2>";
-        return;
-    }
-    list.forEach((p,index)=>{
-        let isWish = wishlist.some(w=>w.name === p.name);
-        grid.innerHTML += `
-        <div class="card" style="position:relative;">
-            <button class="wishlist-btn${isWish ? ' active' : ''}" onclick="toggleWishlist(${index});event.stopPropagation();">
-                ${isWish ? "❤️" : "🤍"}
-            </button>
-            <img src="${p.image}" onerror="this.src='../assets/products/default.jpg'">
-            <h3>${p.name}</h3>
-            <p class="price">₹${p.price}</p>
-            <button onclick="addToCart('${p.name}',${p.price});event.stopPropagation();">Add to Cart</button>
-        </div>
-        `;
-    });
+let grid=document.getElementById("productGrid");
+grid.innerHTML="";
+
+list.forEach(p=>{
+
+grid.innerHTML+=`
+<div class="card" onclick='openProduct(${JSON.stringify(p)})'>
+
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+
+<img src="${p.image}" onerror="this.src='../assets/products/default.jpg'">
+
+<h3>${p.name}</h3>
+<p>⭐⭐⭐⭐ (${p.rating})</p>
+<p class="price">₹${p.price}</p>
+
+<div class="qty-box">
+<button onclick="event.stopPropagation();changeQty(this,-1)">-</button>
+<span class="qty">0</span>
+<button onclick="event.stopPropagation();changeQty(this,1)">+</button>
+</div>
+
+<button class="add-btn" onclick="event.stopPropagation();addToCart('${p.name}',${p.price})">
+Add
+</button>
+
+</div>`;
+});
 }
 
+/* FIXED QTY */
+function changeQty(btn,val){
+let span=btn.parentElement.querySelector(".qty");
+let q=parseInt(span.innerText)+val;
+if(q<0) q=0;
+span.innerText=q;
+}
+
+/* FIXED PRODUCT OPEN */
+function openProduct(product){
+localStorage.setItem("product",JSON.stringify(product));
+window.location.href="product.html";
+}
+
+/* FILTER */
 function applyFilters(){
-let category = document.getElementById("categoryFilter").value;
-let search = document.getElementById("searchInput").value.toLowerCase();
-let sort = document.getElementById("sortFilter").value;
+let search=document.getElementById("searchInput").value.toLowerCase();
+let category=document.getElementById("categoryFilter").value;
 
-let filtered = products.filter(p=>{
-return (category==="all" || p.category===category) &&
-p.name.toLowerCase().includes(search);
+let filtered=products.filter(p=>{
+return (category==="all" || p.category===category)
+&& p.name.toLowerCase().includes(search);
 });
-
-if(sort==="low") filtered.sort((a,b)=>a.price-b.price);
-if(sort==="high") filtered.sort((a,b)=>b.price-a.price);
 
 renderProducts(filtered);
 }
 
-function addToCart(name,price){
-cart.push({name,price});
-localStorage.setItem("cart",JSON.stringify(cart));
-updateCart();
-}
+renderProducts(products);
 
-function updateCart(){
-let list = document.getElementById("cartItems");
-let total = 0;
-list.innerHTML = "";
-
-cart.forEach(item=>{
-total += item.price;
-list.innerHTML += `<li>${item.name} - ₹${item.price}</li>`;
-});
-
-document.getElementById("cartTotal").innerText = total;
-document.getElementById("cartCount").innerText = cart.length;
-}
-
-function toggleWishlist(index){
-let item = products[index];
-let exists = wishlist.find(p=>p.name===item.name);
-
-if(exists){
-wishlist = wishlist.filter(p=>p.name!==item.name);
-}else{
-wishlist.push(item);
-}
-
-localStorage.setItem("wishlist",JSON.stringify(wishlist));
-applyFilters();
-}
-
-function openCart(){
-document.getElementById("cartBox").style.display="block";
-updateCart();
-}
-
-function closeCart(){
-document.getElementById("cartBox").style.display="none";
-}
-let products = [
-    { name: "Designer Saree 1", price: 4999, category: "saree", image: "../assets/products/designer-saree1.jpg" },
-    { name: "Designer Saree 2", price: 5299, category: "saree", image: "../assets/products/designer-saree2.jpg" },
-    { name: "Designer Saree 3", price: 4899, category: "saree", image: "../assets/products/designer-saree3.jpg" },
-    { name: "Lehenga 6", price: 7999, category: "lehenga", image: "../assets/products/lehenga6.jpg" },
-    { name: "Lehenga 7", price: 8499, category: "lehenga", image: "../assets/products/lehenga7.jpg" },
-    { name: "Lehenga 8", price: 8999, category: "lehenga", image: "../assets/products/lehenga8.jpg" },
-    { name: "Lehenga 9", price: 9299, category: "lehenga", image: "../assets/products/lehenga9.jpg" },
-    { name: "Lehenga 10", price: 9999, category: "lehenga", image: "../assets/products/lehenga10.jpg" },
-    { name: "Lehenga 11", price: 10499, category: "lehenga", image: "../assets/products/lehenga11.jpg" },
-    { name: "Party Wear 1", price: 2999, category: "party-wear", image: "../assets/products/party-wear1.jpg" },
-    { name: "Party Wear", price: 3199, category: "party-wear", image: "../assets/products/party-wear.jpg" },
-    { name: "Western Wear", price: 3499, category: "western-wear", image: "../assets/products/western-wear.jpg" },
-
-    { name: "Kids Wear", price: 1499, category: "kids-wear", image: "../assets/products/kids-wear.jpg" },
-    { name: "Kids Wear 2", price: 1599, category: "kids-wear", image: "../assets/products/kids-wear2.jpg" },
-    { name: "Kids Wear 3", price: 1699, category: "kids-wear", image: "../assets/products/kids-wear3.jpg" },
-    { name: "Kids Wear 4", price: 1799, category: "kids-wear", image: "../assets/products/kids-wear4.jpg" },
-    { name: "Kids Wear 5", price: 1899, category: "kids-wear", image: "../assets/products/kids-wear5.jpg" },
-    { name: "Gold Bracelet", price: 2499, category: "bracelet", image: "../assets/products/gold-bracelet.jpg" },
-    { name: "Bracelets", price: 2299, category: "bracelet", image: "../assets/products/bracelets.jpg" },
-    { name: "Diamond Bracelet", price: 3499, category: "bracelet", image: "../assets/products/diamond-bracelet.jpg" },
-    { name: " Diamond Chains", price: 1999, category: "necklace", image: "../assets/products/chains.jpg" },
-    { name: "Gold Necklace", price: 4999, category: "necklace", image: "../assets/products/gold-necklace.jpg" },
-    { name: "Jewellery Set", price: 3999, category: "jewelry", image: "../assets/products/jewellery-set.jpg" },
-    { name: "Jewellery Set 1", price: 4199, category: "jewelry", image: "../assets/products/jewellery-set1.jpg" },
-    { name: "Jewellery Set 2", price: 4299, category: "jewelry", image: "../assets/products/jewellery-set2.jpg" },
-    { name: "Jewellery Set 3", price: 4399, category: "jewelry", image: "../assets/products/jewellery-set3.jpg" },
-    { name: "Earrings Gold", price: 999, category: "earrings", image: "../assets/products/earrings.jpg" },
-    { name: "Earrings 1", price: 1099, category: "earrings", image: "../assets/products/earrings1.jpg" },
-    { name: "Formal Wear", price: 2599, category: "formal", image: "../assets/products/formal.jpg" },
-    { name: "Wedding Dress", price: 9999, category: "wedding-dress", image: "../assets/products/wedding-dress.jpg" },
-    { name: "Wedding Dress 1", price: 10499, category: "wedding-dress", image: "../assets/products/wedding-dress1.jpg" },
-    { name: "Wedding Dress 2", price: 10999, category: "wedding-dress", image: "../assets/products/wedding-dress2.jpg" },
-    { name: "Wedding Dress 5", price: 11499, category: "wedding-dress", image: "../assets/products/wedding-dress5.jpg" },
-    { name: "Indian Wedding Dress 3", price: 11999, category: "wedding-dress", image: "../assets/products/indian-wedding-dress3.jpg" },
-    { name: "Indian Wedding Dress 4", price: 12499, category: "wedding-dress", image: "../assets/products/indian-wedding-dress4.jpg" }
-];
-
-applyFilters();
-updateCart();
 </script>
+
+<!-- FOOTER -->
+<footer>
+<p>📞 2345678902 | ✉️ reshmafashion@gmail.com</p>
+
+<p>
+<a href="../index.html">Home</a> |
+<a href="#">Collection</a> |
+<a href="wishlist.html">Wishlist</a> |
+<a href="contact.html">Contact</a>
+</p>
+
+<p>© Reshma Designs 💖</p>
+</footer>
+
 
 </body>
 </html>

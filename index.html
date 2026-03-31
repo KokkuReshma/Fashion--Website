@@ -3,247 +3,396 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reshma Designers - Fashion Store</title>
-<link rel="stylesheet" href="css/style.css">
+<title>Reshma Designers</title>
+
+<style>
+
+/* BODY */
+body{
+    font-family: Arial;
+    margin:0;
+    background:#fffafc;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+    background:#fff;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo img{height:40px;}
+
+ul{
+    list-style:none;
+    display:flex;
+    gap:15px;
+}
+
+ul li a{
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+}
+
+/* SEARCH */
+input{
+    padding:6px 10px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* ✅ HEADER LIGHT COLOR (BLACK REMOVE) */
+.scroll-text{
+    overflow:hidden;
+    white-space:nowrap;
+    background:#ffe6ef;  /* LIGHT PINK */
+}
+
+.scroll-text span{
+    display:inline-block;
+    padding:12px;
+    font-size:24px;
+    animation:scroll 12s linear infinite;
+}
+
+@keyframes scroll{
+    from{transform:translateX(100%);}
+    to{transform:translateX(-100%);}
+}
+
+/* MULTI COLOR TEXT */
+.multi{
+    background: linear-gradient(90deg, red, orange, pink, purple, blue);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight:bold;
+}
+
+/* QUOTE */
+.quote{
+    text-align:center;
+    margin:10px;
+    font-weight:bold;
+}
+
+/* PRODUCTS */
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+    padding:20px;
+}
+
+/* CARD */
+.card{
+    width:220px;
+    border:1px solid #eee;
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+    position:relative;
+    cursor:pointer;
+    transition:0.3s;
+    background:#fff;
+}
+
+.card:hover{transform:scale(1.05);}
+
+.card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+/* WISHLIST */
+.wishlist-btn{
+    position:absolute;
+    top:8px;
+    right:8px;
+    border:none;
+    background:white;
+    border-radius:50%;
+    padding:5px;
+    cursor:pointer;
+}
+
+/* PRICE */
+.price{
+    color:#ff3f6c;
+    font-weight:bold;
+}
+
+/* BUTTON */
+button{
+    padding:6px 10px;
+    margin:3px;
+    border:none;
+    background:#ff3f6c;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* QTY */
+.qty-box{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:5px;
+}
+
+/* FOOTER */
+footer{
+    background:#ff3f6c;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+footer a{
+    color:#fff;
+    text-decoration:none;
+    margin:0 5px;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+
+<!-- Pink Gradient Top Bar -->
+<div class="top-bar" style="background:linear-gradient(90deg,#ff3f6c,#ff6f91);color:#fff;text-align:center;padding:10px 0;font-weight:700;font-size:18px;letter-spacing:0.5px;">
+    <span style="font-size:20px;">🔥</span> Flat 50% OFF on Wedding Collection | Free Shipping Available
 </div>
 
-<!-- Navbar -->
+<!-- NAV -->
 <nav>
-    <div class="logo">
-        <img src="assets/branding/logo.svg" alt="Reshma Designs">
-    </div>
+<div class="logo"><img src="assets/branding/logo.svg"></div>
 
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="pages/collection.html">Collection</a></li>
+<li><a href="pages/wishlist.html">Wishlist</a></li>
+<li><a href="pages/contact.html">Contact</a></li>
+<li><a href="pages/support.html">Support</a></li>
+</ul>
 
-    <ul id="navMenu">
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="pages/collection.html">Collection</a></li>
-        <li><a href="pages/wishlist.html">❤️ Wishlist</a></li>
-        <li><a href="pages/contact.html">Contact</a></li>
-        <li><a href="pages/support.html">Support</a></li>
-        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
-        <li><a href="pages/profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
-        <li><a href="pages/login.html" id="loginLink">Login</a></li>
-        <li><a href="pages/signup.html" id="signupLink">Signup</a></li>
-        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
-        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
-    </ul>
-
-    <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchProducts()" style="width:180px;max-width:100%;font-size:15px;padding:7px 12px;border-radius:6px;border:1.5px solid #eee;">
+<input type="text" placeholder="🔍 Search">
 </nav>
 
-<!-- Header -->
-<header>
-    <div class="scroll-text">
-        <div class="scroll-track">
-            <span class="multi-color">✨ Reshma Designers ✨</span>
-            <span class="multi-color">✨ Reshma Designers ✨</span>
-            <span class="multi-color">✨ Reshma Designers ✨</span>
-            <span class="multi-color">✨ Reshma Designers ✨</span>
-        </div>
-    </div>
+<!-- HEADER -->
+<div class="scroll-text">
+<span class="multi">✨ Reshma Designers ✨ Reshma Designers ✨ Reshma Designers ✨ Reshma Designers ✨ Reshma Designers ✨ Reshma Designers ✨</span>
+</div>
 
-    <!-- ✅ ADD THIS LINE -->
-    <p class="premium-tagline">
-        Wear your confidence. Own your style.
-    </p>
-</header>
+<p class="quote">Style speaks louder</p>
 
-<!-- Offers Banner -->
-<div id="offerBanner" style="background: linear-gradient(135deg, #ff3f6c, #ff6b9d); color: white; padding: 20px; text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 20px; border-radius: 8px;">📢 <span id="offerText">Flat 50% OFF</span></div>
-
-<!-- Products -->
+<!-- PRODUCTS -->
 <section class="gallery">
-<div class="card" data-category="saree" onclick="viewProduct('Designer Saree', 4999, 'assets/products/designer-saree1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Designer Saree" onclick="toggleWishlist('Designer Saree', 4999, 'assets/products/designer-saree1.jpg', event)">🤍</button>
-    <img src="assets/products/designer-saree1.jpg" alt="Designer Saree" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
-    <p class="brand">Reshma Designs</p>
-    <h3>Designer Saree</h3>
-    <p class="rating">⭐⭐⭐⭐ (4.2)</p>
-    <p class="price">₹4,999</p>
-    <button onclick="addToCart('Designer Saree', 4999); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+
+
+<!-- PRODUCT 1 -->
+<div class="card" onclick="viewProduct('Designer Saree',4999,'assets/products/designer-saree1.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/designer-saree1.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Designer Saree</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="price">₹4999</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Designer Saree',4999,event)">Add</button>
 </div>
 
-<div class="card" data-category="lehenga" onclick="viewProduct('Lehenga 6', 7999, 'assets/products/lehenga6.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Lehenga 6" onclick="toggleWishlist('Lehenga 6', 7999, 'assets/products/lehenga6.jpg', event)">🤍</button>
-    <img src="assets/products/lehenga6.jpg" alt="Lehenga 6" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
-    <p class="brand">Reshma Designs</p>
-    <h3>Lehenga 6</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
-    <p class="price">₹7,999</p>
-    <button onclick="addToCart('Lehenga 6', 7999); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 2 -->
+<div class="card" onclick="viewProduct('Lehenga',7999,'assets/products/lehenga6.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/lehenga6.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Lehenga</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="price">₹7999</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Lehenga',7999,event)">Add</button>
 </div>
 
-<div class="card" data-category="party-wear" onclick="viewProduct('Party Wear 1', 2999, 'assets/products/party-wear1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Party Wear 1" onclick="toggleWishlist('Party Wear 1', 2999, 'assets/products/party-wear1.jpg', event)">🤍</button>
-    <img src="assets/products/party-wear1.jpg" alt="Party Wear 1" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
-    <p class="brand">Reshma Designs</p>
-    <h3>Party Wear 1</h3>
-    <p class="rating">⭐⭐⭐⭐ (4.1)</p>
-    <p class="price">₹2,999</p>
-    <button onclick="addToCart('Party Wear 1', 2999); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 3 -->
+<div class="card" onclick="viewProduct('Kids Wear',1499,'assets/products/kids-wear.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/kids-wear.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Kids Wear</h3>
+<p>⭐⭐⭐⭐</p>
+<p class="price">₹1499</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Kids Wear',1499,event)">Add</button>
 </div>
 
-<div class="card" data-category="wedding-dress" onclick="viewProduct('Wedding Dress 1', 10499, 'assets/products/wedding-dress1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Wedding Dress 1" onclick="toggleWishlist('Wedding Dress 1', 10499, 'assets/products/wedding-dress1.jpg', event)">🤍</button>
-    <img src="assets/products/wedding-dress1.jpg" alt="Wedding Dress 1" onerror="this.onerror=null;this.src='assets/products/default.jpg';">
-    <p class="brand">Reshma Designs</p>
-    <h3>Wedding Dress 1</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
-    <p class="price">₹10,499</p>
-    <button onclick="addToCart('Wedding Dress 1', 10499); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 4 -->
+<div class="card" onclick="viewProduct('Gold Necklace',4999,'assets/products/gold-necklace.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/gold-necklace.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Gold Necklace</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="price">₹4999</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Gold Necklace',4999,event)">Add</button>
 </div>
 
-<div class="card" data-category="formal" onclick="viewProduct('Formal Wear', 2599, 'assets/products/formal.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Formal Wear" onclick="toggleWishlist('Formal Wear', 2599, 'assets/products/formal.jpg', event)">🤍</button>
-    <img src="assets/products/party-wear.jpg" alt="Formal Wear">
-    <p class="brand">Reshma Designs</p>
-    <h3>Formal Wear</h3>
-    <p class="rating">⭐⭐⭐⭐☆ (4.2)</p>
-    <p class="price">₹2,599</p>
-    <button onclick="addToCart('Formal Wear', 2599); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 5 -->
+<div class="card" onclick="viewProduct('Party Wear',2999,'assets/products/party-wear1.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/party-wear1.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Party Wear</h3>
+<p>⭐⭐⭐⭐</p>
+<p class="price">₹2999</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Party Wear',2999,event)">Add</button>
 </div>
 
-<div class="card" data-category="kids-wear" onclick="viewProduct('Kids Wear', 1499, 'assets/products/kids-wear.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Kids Wear" onclick="toggleWishlist('Kids Wear', 1499, 'assets/products/kids-wear.jpg', event)">🤍</button>
-    <img src="assets/products/kids-wear.jpg" alt="Kids Wear">
-    <p class="brand">Reshma Designs</p>
-    <h3>Kids Wear</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.5)</p>
-    <p class="price">₹1999</p>
-    <button onclick="addToCart('Kids Ethnic Wear', 1999); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 6 -->
+<div class="card" onclick="viewProduct('Earrings Gold',999,'assets/products/earrings.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/earrings.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Earrings Gold</h3>
+<p>⭐⭐⭐⭐</p>
+<p class="price">₹999</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Earrings Gold',999,event)">Add</button>
 </div>
 
-<div class="card" data-category="jewelry" onclick="viewProduct('Gold Bracelet', 2499, 'assets/products/gold-bracelet1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Gold Bracelet" onclick="toggleWishlist('Gold Bracelet', 2499, 'assets/products/gold-bracelet1.jpg', event)">💍</button>
-        <img src="assets/products/gold-bracelet.jpg" alt="Gold Bracelet">
-    <p class="brand">Reshma</p>
-    <h3>Gold Bracelet</h3>
-    <p class="rating">⭐⭐⭐⭐☆ (4.4)</p>
-    <p class="price">₹2499</p>
-    <button onclick="addToCart('Gold Bracelet', 2499); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 7 -->
+<div class="card" onclick="viewProduct('Formal Wear',2599,'assets/products/formal.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/formal.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Formal Wear</h3>
+<p>⭐⭐⭐⭐</p>
+<p class="price">₹2599</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Formal Wear',2599,event)">Add</button>
 </div>
 
-<div class="card" data-category="jewelry" onclick="viewProduct('Pearl Earrings', 1499, 'assets/products/pearl-earrings1.jpg')" style="cursor:pointer;">
-    <button class="wishlist-btn" data-product="Designer Earrings" onclick="toggleWishlist('Designer Earrings', 1499, 'assets/products/earrings1.jpg', event)">💍</button>
-        <img src="assets/products/earrings1.jpg" alt="Designer Earrings">
-    <p class="brand">Reshma</p>
-    <h3>Designer Earrings</h3>
-    <p class="rating">⭐⭐⭐⭐⭐ (4.7)</p>
-    <p class="price">₹1499</p>
-    <button onclick="addToCart('Designer Earrings', 1499); event.stopPropagation();">Add to Bag</button>
-    <div class="qty">1</div>
+<!-- PRODUCT 8 -->
+<div class="card" onclick="viewProduct('Western Wear',3499,'assets/products/western-wear.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/western-wear.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Western Wear</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="price">₹3499</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Western Wear',3499,event)">Add</button>
+</div>
+
+<!-- PRODUCT 9 -->
+<div class="card" onclick="viewProduct('Kids Wear Blue',1599,'assets/products/kids-wear2.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/kids-wear2.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Kids Wear Blue</h3>
+<p>⭐⭐⭐⭐</p>
+<p class="price">₹1599</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Kids Wear Blue',1599,event)">Add</button>
+</div>
+
+<!-- PRODUCT 10 -->
+<div class="card" onclick="viewProduct('Lehenga Pink',9299,'assets/products/lehenga9.jpg')">
+<button class="wishlist-btn" onclick="event.stopPropagation()">❤️</button>
+<img src="assets/products/lehenga9.jpg" onerror="this.src='assets/products/default.jpg'">
+<h3>Lehenga Pink</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="price">₹9299</p>
+<div class="qty-box">
+<button onclick="changeQty(this,-1,event)">-</button>
+<span class="qty">0</span>
+<button onclick="changeQty(this,1,event)">+</button>
+</div>
+<button onclick="addToCart('Lehenga Pink',9299,event)">Add</button>
 </div>
 
 </section>
 
-<!-- Cart -->
-<div id="cartBox" class="cart-box">
-    <h3>Your Cart</h3>
-    <ul id="cartItems"></ul>
-    <p>Total: ₹<span id="cartTotal">0</span></p>
-    <button onclick="window.location.href='pages/checkout.html'">Checkout</button>
-    <br><br>
-    <button onclick="closeCart()">Close</button>
-</div>
-
-<script src="js/script.js"></script>
-
 <script>
-// Star rating rendering for all .star-rating elements
-function renderStars() {
-  document.querySelectorAll('.star-rating').forEach(function(starDiv) {
-    const rating = parseFloat(starDiv.getAttribute('data-rating')) || 0;
-    let html = '';
-    for (let i = 1; i <= 5; i++) {
-      if (rating >= i) html += '★';
-      else if (rating >= i - 0.5) html += '☆';
-      else html += '☆';
-    }
-    html += ` <span style='font-size:13px;color:#888;'>(${rating.toFixed(1)})</span>`;
-    starDiv.innerHTML = html;
-    starDiv.style.color = '#ffb400';
-    starDiv.style.fontSize = '18px';
-    starDiv.style.margin = '5px 0';
-  });
+
+/* PRODUCT PAGE FIX */
+function viewProduct(name,price,image){
+localStorage.setItem("product", JSON.stringify({
+name:name,
+price:price,
+image:image
+}));
+window.location.href="pages/product.html";
 }
 
-// Quantity controls for each card
-function changeQty(btn, delta, name, price) {
-  const qtySpan = btn.parentElement.querySelector('.qty');
-  let qty = parseInt(qtySpan.innerText);
-  qty = Math.max(1, qty + delta);
-  qtySpan.innerText = qty;
+/* QTY */
+function changeQty(btn,delta,e){
+e.stopPropagation();
+let qty = btn.parentElement.querySelector(".qty");
+let val = parseInt(qty.innerText);
+qty.innerText = Math.max(0,val+delta);
 }
 
-// Add to cart with quantity
-function addToCart(name, price, btn) {
-  const card = btn.closest('.card');
-  const qty = card ? parseInt(card.querySelector('.qty')?.innerText || '1') : 1;
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-  let item = cart.find(i => i.name === name);
-  if (item) {
-    item.quantity = (item.quantity || 1) + qty;
-  } else {
-    cart.push({ name, price, quantity: qty });
-  }
-  localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
-  showNotification(`✅ ${name} x${qty} added to cart!`);
+/* CART */
+function addToCart(name,price,e){
+e.stopPropagation();
+alert(name+" added to cart");
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  renderStars();
-});
 </script>
 
-<!-- ✅ FOOTER ADDED -->
-<footer class="site-footer">
-    <div class="footer-column">
-        <h4>Contact</h4>
-        <p>📞 2345678902</p>
-        <p>✉️ reshmafashion@gmail.com</p>
-        <p>📍 Nellore, Andhra Pradesh</p>
-    </div>
+<!-- FOOTER -->
+<footer>
 
-    <div class="footer-column">
-        <h4>Customer Care</h4>
-        <p>Help & Support</p>
-        <p>Returns & Refunds</p>
-        <p>Shipping Info</p>
-        <div class="quick-links">
-            <h5 style="margin:10px 0 5px 0; color:#fff;">Quick Links</h5>
-            <a href="index.html" style="color:#fff;">Home</a> |
-            <a href="pages/collection.html" style="color:#fff;">Collection</a> |
-            <a href="pages/wishlist.html" style="color:#fff;">Wishlist</a> |
-            <a href="pages/contact.html" style="color:#fff;">Contact</a>
-        </div>
-    </div>
+<p>📞 2345678902 | ✉️ reshmafashion@gmail.com</p>
 
-    <div class="footer-column">
-        <h4>Follow Us</h4>
-        <p>Instagram | Facebook</p>
-        <p>YouTube | Pinterest</p>
-    </div>
+<p>
+<a href="#">Home</a> |
+<a href="pages/collection.html">Collection</a> |
+<a href="pages/wishlist.html">Wishlist</a> |
+<a href="pages/contact.html">Contact</a> |
+<a href="pages/support.html">Support</a>
+</p>
 
-    <div class="footer-column">
-        <p>© 2026 Reshma Designs</p>
-        <p>Style that defines you 💖</p>
-    </div>
+<p>© Reshma Designs 💖</p>
+
 </footer>
 
 </body>

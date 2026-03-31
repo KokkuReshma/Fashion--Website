@@ -1,243 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details - Reshma Designs</title>
-    <link rel="stylesheet" href="../css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Details</title>
+
+<style>
+
+/* BODY */
+body{
+margin:0;
+font-family:Arial;
+background:#fafafa;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:10px 20px;
+background:#fff;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo img{height:40px;}
+
+ul{display:flex;gap:15px;list-style:none;}
+ul a{text-decoration:none;color:#333;font-weight:bold;}
+
+/* PRODUCT BOX */
+.container{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:40px;
+padding:40px;
+flex-wrap:wrap;
+}
+
+/* IMAGE */
+.image-box img{
+width:280px;
+height:360px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* DETAILS */
+.details{
+max-width:320px;
+}
+
+/* PRICE */
+.price{
+color:#ff3f6c;
+font-size:20px;
+font-weight:bold;
+}
+
+/* SIZE BUTTON */
+.size-btn{
+padding:6px 10px;
+border:1px solid #ccc;
+background:white;
+cursor:pointer;
+border-radius:5px;
+font-size:13px;
+}
+
+.size-btn:hover{
+border-color:#ff3f6c;
+}
+
+/* QTY */
+.qty-box{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+}
+
+.qty-box button{
+padding:5px 10px;
+font-size:14px;
+background:#ff3f6c;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.qty-box span{
+font-size:14px;
+min-width:25px;
+text-align:center;
+}
+
+/* ADD BUTTON */
+.add-btn{
+width:100%;
+padding:8px;
+margin-top:15px;
+background:#ff3f6c;
+color:white;
+border:none;
+border-radius:5px;
+font-size:14px;
+cursor:pointer;
+}
+
+/* BACK */
+.back-btn{
+margin-top:10px;
+padding:6px;
+width:100%;
+background:#eee;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
 </head>
+
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar">
-    🔥 Flat 50% OFF on Wedding Collection | Free Shipping Available
+<!-- NAV -->
+<nav>
+<div class="logo">
+<img src="../assets/branding/logo.svg">
 </div>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">
-        <img src="../assets/branding/logo.svg" alt="Reshma Designs">
-    </div>
-    <ul id="navMenu">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="collection.html">Collection</a></li>
-        <li><a href="wishlist.html">❤️ Wishlist</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li id="userGreeting" style="color: #ff3f6c; font-weight: bold; display: none;"></li>
-        <li><a href="profile.html" id="profileLink" style="display: none;">👤 My Profile</a></li>
-        <li><a href="login.html" id="loginLink">Login</a></li>
-        <li><a href="signup.html" id="signupLink">Signup</a></li>
-        <li><a href="#" onclick="logout()" id="logoutLink" style="display: none;">Logout</a></li>
-        <li><a href="#" onclick="openCart()">🛒 (<span id="cartCount">0</span>)</a></li>
-    </ul>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="collection.html">Collection</a></li>
+<li><a href="wishlist.html">Wishlist</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
 </nav>
 
-<!-- QUOTE BANNER -->
-<div style="text-align:center; padding:20px; background:#fff5f8;">
-    <p style="font-size:14px; color:#666; margin:0;">Each piece tells a story of elegance and craftsmanship.</p>
+<!-- PRODUCT -->
+<div class="container">
+
+<div class="image-box">
+<img id="img">
 </div>
 
-<!-- PRODUCT SECTION -->
-<section style="display:flex; gap:40px; padding:40px; flex-wrap:wrap; justify-content:center;">
+<div class="details">
 
-    <!-- IMAGE -->
-    <div style="position: relative; width: 320px;">
-        <img id="productImage" style="width:100%; height: 400px; object-fit: cover; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.2);" alt="Product">
-        <button id="wishlistBtn" class="wishlist-btn" onclick="toggleWishlistFromPage(event)">🤍</button>
-    </div>
+<h2 id="name"></h2>
+<p>⭐⭐⭐⭐☆ (4.5)</p>
+<p class="price" id="price"></p>
 
-    <!-- DETAILS -->
-    <div style="max-width:400px;">
-        <h2 id="productName"></h2>
-        <p class="rating" id="productRating" style="color: #ffc107; font-size: 14px;">⭐⭐⭐⭐☆ (4.5)</p>
-        <h3 id="productPrice" style="color:#ff3f6c;"></h3>
-
-        <p id="productDesc" style="color: #666; line-height: 1.6;">Premium quality fashion product with best design and comfort. Part of Reshma Designs exclusive collection.</p>
-
-        <!-- SIZE SELECTION -->
-        <div style="margin: 20px 0;">
-            <label style="font-weight: bold; margin-bottom: 10px; display: block;">Select Size:</label>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <button onclick="selectSize('XS')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">XS</button>
-                <button onclick="selectSize('S')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">S</button>
-                <button onclick="selectSize('M')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">M</button>
-                <button onclick="selectSize('L')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">L</button>
-                <button onclick="selectSize('XL')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">XL</button>
-                <button onclick="selectSize('XXL')" class="size-btn" style="border: 2px solid #ddd; padding: 10px 15px; cursor: pointer; border-radius: 6px;">XXL</button>
-            </div>
-            <p id="selectedSize" style="color: #ff3f6c; margin-top: 10px; font-weight: bold;">Size not selected</p>
-        </div>
-
-        <!-- QUANTITY -->
-        <div style="margin: 20px 0;">
-            <label style="font-weight: bold; margin-bottom: 10px; display: block;">Quantity:</label>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button onclick="decreaseQuantity()" style="padding: 10px 15px; background: #ddd; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 18px;">−</button>
-                <span id="quantityDisplay" style="min-width: 40px; text-align: center; font-weight: bold; font-size: 16px;">1</span>
-                <button onclick="increaseQuantity()" style="padding: 10px 15px; background: #ddd; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 18px;">+</button>
-            </div>
-        </div>
-
-        <!-- BUTTONS -->
-        <button onclick="addToCartFromPage()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, #ff3f6c, #ff6f91); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">Add to Bag</button>
-        <button onclick="goBack()" style="width: 100%; padding: 12px; margin-top: 10px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px;">⬅ Back to Collection</button>
-    </div>
-
-</section>
-
-<footer class="site-footer">
-    <div class="footer-column">
-        <h4>Contact</h4>
-        <p>📞 2345678902</p>
-    </div>
-</footer>
-
-<!-- Cart Modal -->
-<div id="cartBox" class="cart-box">
-    <h3>Your Cart</h3>
-    <ul id="cartItems"></ul>
-    <p>Total: ₹<span id="cartTotal">0</span></p>
-    <button onclick="window.location.href='checkout.html'">Checkout</button>
-    <br><br>
-    <button onclick="closeCart()">Close</button>
+<!-- SIZE -->
+<div>
+<p><b>Select Size</b></p>
+<button class="size-btn" onclick="selectSize('S')">S</button>
+<button class="size-btn" onclick="selectSize('M')">M</button>
+<button class="size-btn" onclick="selectSize('L')">L</button>
+<button class="size-btn" onclick="selectSize('XL')">XL</button>
+<button class="size-btn" onclick="selectSize('XXL')">XXL</button>
 </div>
 
-<script src="../js/script.js"></script>
+<p id="sizeText" style="color:#ff3f6c;font-size:13px;">Size not selected</p>
+
+<!-- QTY -->
+<div class="qty-box">
+<button onclick="dec()">-</button>
+<span id="qty">1</span>
+<button onclick="inc()">+</button>
+</div>
+
+<!-- BUTTON -->
+<button class="add-btn" onclick="add()">Add to Bag</button>
+<button class="back-btn" onclick="goBack()">⬅ Back</button>
+
+</div>
+
+</div>
+
 <script>
-// PRODUCT PAGE VARIABLES
-let productQuantity = 1;
-let selectedProductSize = null;
-const product = JSON.parse(localStorage.getItem("selectedProduct"));
 
-// GET PRODUCT
+let product = JSON.parse(localStorage.getItem("product"));
+let qty = 1;
+let size = null;
+
+/* LOAD */
 if(product){
-    document.getElementById("productName").innerText = product.name;
-    document.getElementById("productPrice").innerText = "₹" + product.price;
-    document.getElementById("productImage").src = product.image;
+
+document.getElementById("name").innerText = product.name;
+document.getElementById("price").innerText = "₹"+product.price;
+
+/* IMAGE FIX */
+let path = product.image;
+
+if(!path.includes("../")){
+path = "../" + path;
 }
 
-// SIZE SELECTION
-function selectSize(size) {
-    selectedProductSize = size;
-    document.getElementById("selectedSize").innerText = `Selected Size: ${size}`;
-    document.getElementById("selectedSize").style.color = "#ff3f6c";
-    
-    // Highlight button
-    document.querySelectorAll(".size-btn").forEach(btn => {
-        btn.style.borderColor = btn.innerText === size ? "#ff3f6c" : "#ddd";
-        btn.style.background = btn.innerText === size ? "#fff5f8" : "white";
-    });
-    
-    showNotification(`Size ${size} selected!`);
+document.getElementById("img").src = path;
+
+document.getElementById("img").onerror = function(){
+this.src="../assets/products/default.jpg";
+};
+
 }
 
-// QUANTITY CONTROL
-function increaseQuantity() {
-    productQuantity++;
-    document.getElementById("quantityDisplay").innerText = productQuantity;
+/* SIZE */
+function selectSize(s){
+size = s;
+document.getElementById("sizeText").innerText = "Selected: "+s;
 }
 
-function decreaseQuantity() {
-    if(productQuantity > 1) {
-        productQuantity--;
-        document.getElementById("quantityDisplay").innerText = productQuantity;
-    }
+/* QTY */
+function inc(){
+qty++;
+document.getElementById("qty").innerText = qty;
 }
 
-// WISHLIST FROM PRODUCT PAGE
-function toggleWishlistFromPage(event) {
-    event.stopPropagation();
-    if(!product) return;
-    
-    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const existingItem = wishlist.find(item => item.name === product.name);
-    
-    if(existingItem) {
-        wishlist = wishlist.filter(item => item.name !== product.name);
-        document.getElementById("wishlistBtn").innerText = "🤍";
-        showNotification("❤️ Removed from Wishlist");
-    } else {
-        wishlist.push(product);
-        document.getElementById("wishlistBtn").innerText = "❤️";
-        showNotification("❤️ Added to Wishlist");
-    }
-    
-    localStorage.setItem("wishlist", JSON.stringify(wishlist));
-    updateWishlistUI();
+function dec(){
+if(qty>1){
+qty--;
+document.getElementById("qty").innerText = qty;
+}
 }
 
-// ADD TO CART WITH QUANTITY & SIZE
-function addToCartFromPage(){
-    if(!product) {
-        alert("Product not found!");
-        return;
-    }
-    
-    if(!selectedProductSize) {
-        alert("Please select a size first!");
-        return;
-    }
-    
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartItem = {
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        size: selectedProductSize,
-        quantity: productQuantity,
-        id: Date.now()
-    };
-    
-    // Check if same product with same size exists
-    const existingItem = cart.find(item => item.name === product.name && item.size === selectedProductSize);
-    if(existingItem) {
-        existingItem.quantity = (existingItem.quantity || 1) + productQuantity;
-    } else {
-        cart.push(cartItem);
-    }
-    
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-    
-    showNotification(`✅ ${productQuantity} × ${product.name} (Size ${selectedProductSize}) added to cart!`);
-    
-    // Reset inputs
-    productQuantity = 1;
-    selectedProductSize = null;
-    document.getElementById("quantityDisplay").innerText = "1";
-    document.getElementById("selectedSize").innerText = "Size not selected";
-    document.querySelectorAll(".size-btn").forEach(btn => {
-        btn.style.borderColor = "#ddd";
-        btn.style.background = "white";
-    });
+/* ADD */
+function add(){
+
+if(!size){
+alert("Select size");
+return;
 }
 
-// BACK BUTTON
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+name:product.name,
+price:product.price,
+image:product.image,
+size:size,
+quantity:qty
+});
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert("Added to cart");
+
+}
+
+/* BACK */
 function goBack(){
-    window.history.back();
+window.history.back();
 }
 
-// Initialize page
-document.addEventListener("DOMContentLoaded", function() {
-    showLoading();
-    updateCartCount();
-    updateNavbarUser();
-    
-    // Check wishlist status
-    if(product) {
-        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-        const inWishlist = wishlist.find(item => item.name === product.name);
-        if(inWishlist) {
-            document.getElementById("wishlistBtn").innerText = "❤️";
-        }
-    }
-});
-
-window.addEventListener("load", function() {
-    hideLoading();
-    updateWishlistUI();
-});
 </script>
 
 </body>
